@@ -8,5 +8,6 @@ email:{ type:String, unique:true, required:true},
 password: {type:String, required:true},
 category:{ type: mongoose.Schema.Types.ObjectId, ref: "Category"},
 image:{type:String},
+role :{type :mongoose.Schema.Types.ObjectId,ref:"Role"}
 })
 module.exports=mongoose.model("User",user)
