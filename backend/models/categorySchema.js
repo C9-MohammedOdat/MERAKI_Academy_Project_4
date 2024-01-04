@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const category =new mongoose.Schema({
     title:{type : String, required:true},
 price: {type :Number ,required:true},
