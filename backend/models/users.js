@@ -11,7 +11,7 @@ category:{ type: mongoose.Schema.Types.ObjectId, ref: "Category"},
 image:{type:String},
 role :{type :mongoose.Schema.Types.ObjectId,ref:"Role"}
 })
-userSchema.pre("save", async function () {
+user.pre("save", async function () {
     this.email = this.email.toLowerCase();
     this.password = await bcrypt.hash(this.password, 10);
   });

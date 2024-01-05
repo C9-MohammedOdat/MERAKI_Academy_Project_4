@@ -1,4 +1,4 @@
-const roleModel=require("../models/roleSchema")
+const roleModel=require("../models/roles")
 const createNewRole =(req,res)=>{
     const { role, permissions } = req.body;
     const newRole = new roleModel({ role, permissions });
@@ -21,4 +21,3 @@ const createNewRole =(req,res)=>{
   };
   
   module.exports = { createNewRole };
-}
