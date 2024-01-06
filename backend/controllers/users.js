@@ -109,9 +109,31 @@ const getAllUser=(req,res)=>{
     })
   })
 }
+const getUserByRole=(req,res)=>{
+  userModel.find({role:req.params.id}).populate("role","role").then((result)=>{
+    if(result.length){
+      res.status(200).json({
+        success: true,
+        message: `All the ${req.params.id==="6599007dc383021281e8c377"?"Provider":"Client"} users`,
+        users: result,
+      });
+    }else {
+      res.status(200).json({
+        success: false,
+        message: `No ${req.params.id} users Yet`,
+      });
+    }
+  }).catch((err)=>{
+    res.status(500).json({
+      success:false,
+      message:"Server Error"
+    })
+  })
+}
 module.exports = {
     register,
     login,
-    getAllUser
+    getAllUser,
+    getUserByRole
   };
   
