@@ -1,0 +1,27 @@
+.Login-Page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+   
+}
+.err{
+    padding-top:3px;
+    border-radius: 10px;
+    align-self: center;
+    height: 40px;
+    width: 300px;
+    background-color: hsla(0, 100%, 50%, 0.402);
+    color: white;
+    text-align: center;
+}
+.succ{
+    padding-top:3px;
+    align-self: center;
+    border-radius: 10px;
+    height: 40px;
+    width: 300px;
+    background-color: rgb(78, 142, 78);
+    color: black;
+    text-align: center;
+}
