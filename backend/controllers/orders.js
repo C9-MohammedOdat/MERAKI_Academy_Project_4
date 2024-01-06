@@ -64,4 +64,26 @@ const createNewOrder=(req,res)=>{
                 })
             })
         }
-    module.exports={createNewOrder,getAllClientsOrders,getAllProvidersOrders}
+    const DeleteOrderById=(req,res)=>{
+  const id = req.params.id;
+    orderModel.findByIdAndDelete(id).then((result)=>{
+        if(!result){
+            res.status(404).json({
+                success:false,
+                message:`Order With Id ${id} Not Found`
+            })
+        }
+        res.status(200).json({
+            success:true,
+            message:`Order Deleted`,
+        })
+    }) .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          err: err.message,
+        });
+    })
+
+    }
+    module.exports={createNewOrder,getAllClientsOrders,getAllProvidersOrders,DeleteOrderById}
