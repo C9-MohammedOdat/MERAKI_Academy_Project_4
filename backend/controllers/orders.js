@@ -64,11 +64,11 @@ const createNewOrder=(req,res)=>{
                 })
             })
         }
-    const DeleteOrderById=(req,res)=>{
+    const deleteOrderById=(req,res)=>{
   const id = req.params.id;
     orderModel.findByIdAndDelete(id).then((result)=>{
         if(!result){
-            res.status(404).json({
+          return  res.status(404).json({
                 success:false,
                 message:`Order With Id ${id} Not Found`
             })
@@ -86,4 +86,27 @@ const createNewOrder=(req,res)=>{
     })
 
     }
-    module.exports={createNewOrder,getAllClientsOrders,getAllProvidersOrders,DeleteOrderById}
+    const updateOrderById=(req,res)=>{
+        const update =req.body;
+        const id=req.params.id
+        orderModel.findByIdAndUpdate(id,update).then((result)=>{
+            if(!result){
+                return res.status(404).json({
+                    success:false,
+                    message:`Order With id ${id} Not Found`
+                })
+            }
+            res.status(200).json({
+                success:true,
+                message:"Order Updated",
+                order:result
+            })
+        }).catch((err)=>{
+            res.status(500).json({
+                success:false,
+                message:"Server Error",
+                error:err
+            })
+        })
+    }
+    module.exports={createNewOrder,getAllClientsOrders,getAllProvidersOrders,deleteOrderById,updateOrderById}

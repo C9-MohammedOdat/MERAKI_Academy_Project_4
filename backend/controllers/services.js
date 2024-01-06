@@ -43,11 +43,11 @@ serviceModel.find({title:req.params.title}).populate("provider","firstName phone
     })
 })
 }
-const DeleteServiceById=(req,res)=>{
+const deleteServiceById=(req,res)=>{
     const id = req.params.id;
       serviceModel.findByIdAndDelete(id).then((result)=>{
           if(!result){
-              res.status(404).json({
+            return  res.status(404).json({
                   success:false,
                   message:`Service With Id ${id} Not Found`
               })
@@ -65,4 +65,4 @@ const DeleteServiceById=(req,res)=>{
       })
   
       }
-module.exports={createNewService,getServiceByTilte,DeleteServiceById}
+module.exports={createNewService,getServiceByTilte,deleteServiceById}

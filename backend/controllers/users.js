@@ -130,11 +130,11 @@ const getUserByRole=(req,res)=>{
     })
   })
 }
-const DeleteUserById=(req,res)=>{
+const deleteUserById=(req,res)=>{
   const id = req.params.id;
     userModel.findByIdAndDelete(id).then((result)=>{
         if(!result){
-            res.status(404).json({
+          return  res.status(404).json({
                 success:false,
                 message:`User With Id ${id} Not Found`
             })
@@ -156,6 +156,6 @@ module.exports = {
     register,
     login,
     getAllUser,
-    getUserByRole,DeleteUserById
+    getUserByRole,deleteUserById
   };
   
