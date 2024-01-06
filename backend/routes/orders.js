@@ -1,6 +1,7 @@
 const express=require("express")
-const{createNewOrder,getAllClientsOrders}=require("../controllers/orders")
+const{createNewOrder,getAllClientsOrders,getAllProvidersOrders}=require("../controllers/orders")
 const ordersRouter=express.Router()
 ordersRouter.post("/",createNewOrder)
-ordersRouter.get("/:id",getAllClientsOrders)
+ordersRouter.get("/client/:id",getAllClientsOrders)
+ordersRouter.get("/provider/:id",getAllProvidersOrders)
 module.exports=ordersRouter

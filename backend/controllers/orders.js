@@ -42,4 +42,26 @@ const createNewOrder=(req,res)=>{
             })
         })
     }
-    module.exports={createNewOrder,getAllClientsOrders}
+    const getAllProvidersOrders=(req,res)=>{
+        orderModel.find({provider:req.params.id}).populate("client","firstName phoneNumber -_id").populate("provider","firstName -_id").then((result)=>{
+            if(result.length){
+                res.status(200).json({
+                    success:true,
+                    message:`All ${req.params.id} Services `,
+                    services:result
+                })
+              }else{
+                res.status(200).json({
+                    success:false,
+                    message:"No Orders",
+                })
+              }
+            }).catch((err)=>{
+                res.status(500).json({
+                    success:false,
+                    message:"Server Error",
+                    error:err
+                })
+            })
+        }
+    module.exports={createNewOrder,getAllClientsOrders,getAllProvidersOrders}
