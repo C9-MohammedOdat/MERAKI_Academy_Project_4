@@ -130,13 +130,32 @@ const getUserByRole=(req,res)=>{
     })
   })
 }
-const getUserByService=(req,res)=>{
-  userModel.find({service})
-}
+const DeleteUserById=(req,res)=>{
+  const id = req.params.id;
+    userModel.findByIdAndDelete(id).then((result)=>{
+        if(!result){
+            res.status(404).json({
+                success:false,
+                message:`User With Id ${id} Not Found`
+            })
+        }
+        res.status(200).json({
+            success:true,
+            message:`User Deleted`,
+        })
+    }) .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          err: err.message,
+        });
+    })
+
+    }
 module.exports = {
     register,
     login,
     getAllUser,
-    getUserByRole
+    getUserByRole,DeleteUserById
   };
   
