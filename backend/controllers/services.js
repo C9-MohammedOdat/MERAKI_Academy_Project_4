@@ -7,7 +7,6 @@ const service =new serviceModel({
     provider,
 })
 .save()
-// .populate("user","_id")
 .then((result)=>{
     res.status(201).json({
         success: true,
@@ -21,4 +20,27 @@ const service =new serviceModel({
       });
     });
 }
-module.exports={createNewService}
+const getServiceByTilte=(req,res)=>{
+    console.log(req.params.title);
+serviceModel.find({title:req.params.title}).populate("provider","firstName phoneNumber").then((result)=>{
+  if(result.length){
+    res.status(200).json({
+        success:true,
+        message:`All ${req.params.title} Services `,
+        services:result
+    })
+  }else{
+    res.status(200).json({
+        success:false,
+        message:"No Services",
+    })
+  }
+}).catch((err)=>{
+    res.status(500).json({
+        success:false,
+        message:"Server Error",
+        error:err
+    })
+})
+}
+module.exports={createNewService,getServiceByTilte}

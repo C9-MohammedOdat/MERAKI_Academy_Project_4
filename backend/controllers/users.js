@@ -130,6 +130,9 @@ const getUserByRole=(req,res)=>{
     })
   })
 }
+const getUserByService=(req,res)=>{
+  userModel.find({service})
+}
 module.exports = {
     register,
     login,
