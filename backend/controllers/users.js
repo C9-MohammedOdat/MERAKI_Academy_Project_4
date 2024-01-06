@@ -9,7 +9,7 @@ const register = (req, res) => {
     phoneNumber,
     email,
     password,
-    category,
+    service,
     role,
   } = req.body;
   const user=new userModel({
@@ -18,7 +18,7 @@ const register = (req, res) => {
     phoneNumber,
     email,
     password,
-    category,
+    service,
     role, 
   })
   .save()
@@ -88,8 +88,30 @@ res.status(200).json({
 });
 
 }
+const getAllUser=(req,res)=>{
+  userModel.find({}).populate("role","role").then((result)=>{
+    if(result.length){
+      res.status(200).json({
+        success: true,
+        message: `All the users`,
+        users: result,
+      });
+    }else {
+      res.status(200).json({
+        success: false,
+        message: `No users Yet`,
+      });
+    }
+  }).catch((err)=>{
+    res.status(500).json({
+      success:false,
+      message:"Server Error"
+    })
+  })
+}
 module.exports = {
     register,
-    login
+    login,
+    getAllUser
   };
   

@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
-    firstName:{type:String, required:true},
+    firstName:{type:String},
 lastName: {type:String} ,
-phoneNumber:{type:Number, required:true},
-location:[{type:Number, required:true}], // [longitude, latitude]
+phoneNumber:{type:Number},
+location:{type:String}, // [longitude, latitude]
 email:{ type:String, unique:true, required:true},
 password: {type:String, required:true},
-category:{ type: mongoose.Schema.Types.ObjectId, ref: "Category"},
+service:{ type: mongoose.Schema.Types.ObjectId, ref: "Category"},
 image:{type:String},
 role :{type :mongoose.Schema.Types.ObjectId,ref:"Role"}
 })

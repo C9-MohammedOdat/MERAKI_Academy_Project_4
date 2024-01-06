@@ -1,7 +1,7 @@
-const categoryModel=require("../models/categories")
-const createNewCategory=(req,res)=>{
+const serviceModel=require("../models/services")
+const createNewService=(req,res)=>{
 const{title,price,provider}=req.body
-const category =new categoryModel({
+const service =new serviceModel({
     title,
     price,
     provider,
@@ -11,7 +11,7 @@ const category =new categoryModel({
 .then((result)=>{
     res.status(201).json({
         success: true,
-        message:"Category Created Successfully"
+        message:"service Created Successfully"
     })
 }).catch((err)=>{
     res.status(500).json({
@@ -21,4 +21,4 @@ const category =new categoryModel({
       });
     });
 }
-module.exports={createNewCategory}
+module.exports={createNewService}
