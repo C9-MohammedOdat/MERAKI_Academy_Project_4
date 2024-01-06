@@ -7,6 +7,7 @@ const category =new categoryModel({
     provider,
 })
 .save()
+// .populate("user","_id")
 .then((result)=>{
     res.status(201).json({
         success: true,
