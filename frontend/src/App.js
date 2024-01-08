@@ -7,12 +7,13 @@ import ProviderDashboard from "./components/ProviderDashboard/ProviderDashboard"
 import Home from "./components/Home/Home";
 export const LoginContext = createContext();
 function App() {
+  const [role, setRole] = useState({})
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "")
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn")||false);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [resFromBack, setResFromBack] = useState("")
   return (
-    <LoginContext.Provider value={{setIsLoggedIn,setToken,token,isLoggedIn,resFromBack,setResFromBack,userId, setUserId}}>
+    <LoginContext.Provider value={{setIsLoggedIn,setToken,token,isLoggedIn,resFromBack,setResFromBack,userId, setUserId,role, setRole}}>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="login" element={<Login />} />
