@@ -1,10 +1,19 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,createContext} from 'react'
 import { LoginContext } from '../../App'
+import { Routes, Route, Link } from "react-router-dom";
 import "./ProviderDashboard.css"
+import MyOrders from './MyOrders/MyOrders';
+
+export const ProviderContext=createContext()
 const ProviderDashboard = () => {
-  return (<div className='ProviderDashboard'>
+  return (<ProviderContext.Provider> 
+    <div className='ProviderDashboard'>
     <div className='MyOrder'>My Orders</div>
-  </div>
+    <Routes>
+    <Route path='myorders' element={<MyOrders/>}/>
+    </Routes>
+  </div></ProviderContext.Provider>
+ 
   )
 }
 

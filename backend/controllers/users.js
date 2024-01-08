@@ -73,7 +73,6 @@ res.status(200).json({
   success: true,
   message: `Valid login credentials`,
   token: token,
-  role:result.role
 });
   }
   catch(error){
