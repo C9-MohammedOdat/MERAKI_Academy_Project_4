@@ -11,12 +11,14 @@ const [password, setPassword] = useState("")
 const [phoneNumber, setPhoneNumber] = useState(null)
 const [typeOfAccount, setTypeOfAccount] = useState("")
 const [role, setRole] = useState("")
+const [serviceType, setServiceType] = useState("")
 const sendRegister=()=>{
     axios.post("http://localhost:5000/users/register",{firstName,
     lastName,
     email,
     password,
     phoneNumber,
+    serviceType,
     role}).then((result)=>{
         console.log(result);
         setResFromBack(result.data)
@@ -51,6 +53,15 @@ const sendRegister=()=>{
         <option value={"Provider"}>Provider</option>
         </select>
         </div>
+       {typeOfAccount==="Provider"&& <div>
+        <label>What Is Your Service?</label><br/><br/>
+        <select onChange={(e)=>{
+            setServiceType(e.target.value)
+        }}>
+            <option value={"Furniture delivery"}>Furniture delivery</option>
+            <option value={"Car transporter"}>Car transporter</option>
+            <option value={"Taxi"}>Taxi</option>
+            </select></div>}
         <div><button onClick={sendRegister}>Register</button></div>
         {resFromBack&&<div className={resFromBack.success?"succ":"err"}>{resFromBack.message}</div>}
   </div>

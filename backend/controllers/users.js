@@ -9,7 +9,7 @@ const register = (req, res) => {
     phoneNumber,
     email,
     password,
-    service,
+    serviceType,
     role,
   } = req.body;
   const user=new userModel({
@@ -18,7 +18,7 @@ const register = (req, res) => {
     phoneNumber,
     email,
     password,
-    service,
+    serviceType,
     role, 
   })
   .save()

@@ -7,7 +7,7 @@ phoneNumber:{type:Number},
 location:{type:String}, // [longitude, latitude]
 email:{ type:String, unique:true, required:true},
 password: {type:String, required:true},
-// service:{ type: mongoose.Schema.Types.ObjectId, ref: "Service"},
+serviceType:{type:String},
 image:{type:String},
 role :{type :mongoose.Schema.Types.ObjectId,ref:"Role"}
 })
