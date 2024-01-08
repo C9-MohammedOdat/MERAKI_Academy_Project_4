@@ -2,7 +2,9 @@ import "./Login.css"
 import React ,{useState,useContext} from 'react'
 import axios from 'axios'
 import { LoginContext } from "../../App"
+import { useNavigate } from "react-router-dom"
 const Login = () => {
+    const navigate=useNavigate()
     const{setIsLoggedIn,setToken,token,isLoggedIn,resFromBack,setResFromBack}=useContext(LoginContext)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -14,6 +16,7 @@ const Login = () => {
         setToken(result.data.token)
         localStorage.setItem("token",result.data.token)
         localStorage.setItem("isLoggedIn",true)
+        navigate("/")
     }).catch((err)=>{
         console.log(err);
         setResFromBack(err.response.data)

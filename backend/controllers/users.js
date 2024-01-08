@@ -152,10 +152,16 @@ const deleteUserById=(req,res)=>{
     })
 
     }
+    const checkUser=async(req,res)=>{
+await res.status(200).json({
+  success:true,
+  info:req.token
+})
+    }
 module.exports = {
     register,
     login,
     getAllUser,
-    getUserByRole,deleteUserById
+    getUserByRole,deleteUserById,checkUser
   };
   
