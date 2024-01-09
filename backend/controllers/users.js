@@ -67,7 +67,7 @@ userModel.findOne({email})
       author: result.firstName,
       role: result.role,
     }
-    const options={expiresIn: "60m",}
+    const options={expiresIn: "7 days",}
 const token = jwt.sign(payload,process.env.SECRET,options)
 res.status(200).json({
   success: true,
