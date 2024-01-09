@@ -1,19 +1,45 @@
+body{
+    margin: 0;
+}
+.provider-page{
+    display: flex;
+    
+}
 .ProviderDashboard{
     display: flex;
     flex-direction: column;
     gap:25px;
     /* justify-content:space-around ; */
-    margin-left: 15px;
+    width: 100%;
 }
+.tilte-bar{
+    margin-left: 0;
+   width: 100%;
+   height: 50px;
+    background-color: rgb(154, 157, 157);
 
-.ProviderDashboard div{
+}
+.side-bar{
+    width:200px;
+    height: 100vh;
+    background-color: cadetblue;
+}
+.provider-pic{
+    margin-left: 15%;
+    width: 80px;
+background-color: rgb(255, 255, 255);
+border-radius: 50%;
+}
+.MyOrder{
+    margin-left: 15px;
+
     padding: 10px;
     border: 1px solid grey;
     border-radius: 7px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 }
-.ProviderDashboard div:hover{
+.MyOrder:hover{
     box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2);
 
 }

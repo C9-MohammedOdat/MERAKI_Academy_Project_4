@@ -155,7 +155,8 @@ const deleteUserById=(req,res)=>{
     const checkUser=async(req,res)=>{
 await res.status(200).json({
   success:true,
-  info:req.token
+  info:req.token,
+  image:req.image
 })
     }
 module.exports = {
