@@ -5,7 +5,7 @@ const authorization=require("../middleware/authorization")
 const ordersRouter=express.Router()
 ordersRouter.post("/",createNewOrder)
 ordersRouter.get("/client/:id",getAllClientsOrders)
-ordersRouter.get("/provider/:id",getAllProvidersOrders)
+ordersRouter.get("/provider/:id",authentication,getAllProvidersOrders)
 ordersRouter.delete("/:id",deleteOrderById)
 ordersRouter.put("/:id",updateOrderById)
 module.exports=ordersRouter

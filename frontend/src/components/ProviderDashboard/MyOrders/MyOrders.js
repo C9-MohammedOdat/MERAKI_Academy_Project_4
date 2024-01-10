@@ -8,7 +8,9 @@ const MyOrders = () =>{
 const [loader, setLoader] = useState(true)
   useEffect(()=>{
     setLoader(true)
-axios.get(`http://localhost:5000/orders/provider/${userId}`).then((result)=>{
+axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
+  authorization:`Bearer ${token}`
+}}).then((result)=>{
   console.log(result.data.services);
   setOrders(result.data.services)
   setLoader(false)
