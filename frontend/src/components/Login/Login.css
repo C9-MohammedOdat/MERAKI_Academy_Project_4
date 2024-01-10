@@ -1,9 +1,40 @@
 .Login-Page{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    text-align: center;
     gap: 25px;
-   
+    background: linear-gradient(to top,#281a44, #215464)  
+}
+.userLogo svg{
+    width:75px ;
+    height: 75px;
+    color: white;
+}
+.Welcome{
+    color: white;
+}
+
+.Login-Page input{
+    color:black;
+    height: 40px;
+    width: 300px;
+    /* background-color: #38406337; */
+    border: 1px solid white;
+    padding:3px;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+.Login-btn{
+    border: 0;
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    color: white;
+    font-size: large;
+    background-color:  hwb(208 22% 28%);
 }
 .err{
     padding-top:3px;
