@@ -56,7 +56,7 @@ const Register = () => {
           />
           {/* <Form.Label>Last Name</Form.Label> */}
           <Form.Control
-            type="email"
+            type="text"
             placeholder="Last Name"
             onChange={(e) => {
               setLastName(e.target.value);

@@ -1,5 +1,6 @@
 import "./Login.css"
 import React ,{useState,useContext} from 'react'
+
 import axios from 'axios'
 import { LoginContext } from "../../App"
 import { useNavigate } from "react-router-dom"
@@ -22,7 +23,6 @@ const Login = () => {
         setResFromBack(err.response.data)
     })
     }
-    
   return (
     <div className='Login-Page'>
          <div className='userLogo'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -36,6 +36,7 @@ const Login = () => {
         <div><input onChange={(e)=>{
             setPassword(e.target.value)
         }} type='password' placeholder='Password'/></div>
+
         <div><button className="Login-btn" onClick={sendLogin}>Login</button></div>
         {resFromBack&&<div className={resFromBack.success?"succ":"err"}>{resFromBack.message}</div>}
         </div>

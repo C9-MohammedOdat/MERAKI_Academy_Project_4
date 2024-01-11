@@ -6,6 +6,7 @@ import React, { createContext, useState } from "react";
 import ProviderDashboard from "./components/ProviderDashboard/ProviderDashboard";
 import Home from "./components/Home/Home";
 import ClientDashboard from "./components/ClientDashboard/ClientDashboard";
+import NavBar from "./components/NavBar/NavBar";
 export const LoginContext = createContext();
 function App() {
   const [role, setRole] = useState({})
@@ -16,8 +17,9 @@ function App() {
   const [resFromBack, setResFromBack] = useState("")
   return (
     <LoginContext.Provider value={{setIsLoggedIn,setToken,token,isLoggedIn,resFromBack,setResFromBack,userId, setUserId,role, setRole,userName, setUserName}}>
+      <NavBar/>
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="home" element={<Home/>}/>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register/>}/>
         <Route path="providerDashboard/*" element={<ProviderDashboard/>}/>
