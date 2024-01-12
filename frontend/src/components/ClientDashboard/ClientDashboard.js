@@ -15,7 +15,7 @@ useEffect(()=>{
   setLoader(false)
   service&&(
     axios.post(`http://localhost:5000/users/service`,{serviceType:service}).then((result)=>{
-      setusers(result)
+      setusers(result.data.users)
       setLoader(false)
     console.log(result);
   }).catch((err)=>{
@@ -28,7 +28,7 @@ useEffect(()=>{
 
   return (
     <div className='Services'>
-      {service || (<><Card style={{ width: '25rem' }} className="text-center">
+      {service=="" && (<><Card style={{ width: '25rem' }} className="text-center">
       <Card.Img style={{height: '14rem' }} variant="top" src={logo1} />
       <Card.Body>
         <Card.Title>Furniture Delivery</Card.Title>
