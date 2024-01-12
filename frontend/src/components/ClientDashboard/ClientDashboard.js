@@ -9,14 +9,23 @@ import logo3 from "../images/Gas.jpg"
 
 const ClientDashboard = () => {
   const [service, setService] = useState("")
-  const renderService=()=>{
-    console.log(service);
-  axios.post(`http://localhost:5000/users/service`,{serviceType:service}).then((result)=>{
+const [loader, setLoader] = useState(true)
+const [users, setusers] = useState([])
+useEffect(()=>{
+  setLoader(false)
+  service&&(
+    axios.post(`http://localhost:5000/users/service`,{serviceType:service}).then((result)=>{
+      setusers(result)
+      setLoader(false)
     console.log(result);
   }).catch((err)=>{
     console.log(err);
+    setLoader(false)
   })
-  }
+ )
+ 
+},[service])
+
   return (
     <div className='Services'>
       {service || (<><Card style={{ width: '25rem' }} className="text-center">
@@ -57,6 +66,20 @@ Don't worry! With TAWSElA, you can order a gas cylinder quickly & easily
         }}>Book Now</Button>
       </Card.Body>
     </Card></>)}
+    {loader?<div className='loader'></div>:users.length?(users.map((ele,i)=>
+      <div> <Card style={{ width: '25rem' }} className="text-center">
+      <Card.Img style={{height: '14rem' }} variant="top"  />
+      <Card.Body>
+        <Card.Title>{ele.firstName}</Card.Title>
+        <Card.Text style={{textAlign:"left"}}>
+       {ele.phoneNumber}
+        </Card.Text>
+        <Button variant="primary" onClick={()=>{
+          setService("Gas Cylinders Delivery")
+        }}>Book Now</Button>
+      </Card.Body>
+    </Card></div>
+    )):"NO Content"}
     </div>
   )
 }
