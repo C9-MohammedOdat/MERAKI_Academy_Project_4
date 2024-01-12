@@ -19,7 +19,7 @@ function App() {
     <LoginContext.Provider value={{setIsLoggedIn,setToken,token,isLoggedIn,resFromBack,setResFromBack,userId, setUserId,role, setRole,userName, setUserName}}>
       <NavBar/>
       <Routes>
-        <Route path="home" element={<Home/>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register/>}/>
         <Route path="providerDashboard/*" element={<ProviderDashboard/>}/>

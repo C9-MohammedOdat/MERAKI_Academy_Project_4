@@ -110,8 +110,8 @@ const Register = () => {
                 setServiceType(e.target.value);
               }}
             >
-              <option value="Furniture delivery">Furniture delivery</option>
-              <option value="Car transporter">Car transporter</option>
+              <option value="Furniture delivery">Furniture Delivery</option>
+              <option value="Car transporter">Car Transporter</option>
               <option value="Taxi">Taxi</option>
             </Form.Select></Form.Group>
            
