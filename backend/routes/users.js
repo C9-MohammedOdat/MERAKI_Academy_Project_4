@@ -9,5 +9,5 @@ usersRouter.get("/",getAllUser)
 usersRouter.get("/check",authentication,checkUser)
 usersRouter.get("/:id",getUserByRole)
 usersRouter.delete("/:id",deleteUserById)
-usersRouter.get("/:service",getUserByService)
+usersRouter.post("/service",getUserByService)
 module.exports = usersRouter;

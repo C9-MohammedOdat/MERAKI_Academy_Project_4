@@ -11,7 +11,7 @@ const ClientDashboard = () => {
   const [service, setService] = useState("")
   const renderService=()=>{
     console.log(service);
-  axios.get(`http://localhost:5000/users/${service}`).then((result)=>{
+  axios.post(`http://localhost:5000/users/service`,{serviceType:service}).then((result)=>{
     console.log(result);
   }).catch((err)=>{
     console.log(err);
@@ -28,7 +28,6 @@ const ClientDashboard = () => {
         </Card.Text>
         <Button variant="primary" onClick={()=>{
           setService("Furniture delivery")
-          renderService()
         }}>Book Now</Button>
       </Card.Body>
     </Card>

@@ -89,23 +89,20 @@ res.status(200).json({
 
 }
 const getUserByService=(req,res)=>{
-  console.log(req.params);
-  userModel.find({serviceType:req.params.service}).then((result)=>{
+  userModel.find({serviceType:req.body.serviceType}).then((result)=>{
     if(result.length){
       res.status(200).json({
         success: true,
-        message: `All the ${req.params.service} users`,
+        message: `All the ${req.body.serviceType} users`,
         users: result,
       });
     }else {
       res.status(200).json({
         success: false,
-        message: `No ${req.params.service} users Yet`,
+        message: `No ${req.body.serviceType} users Yet`,
       });
     }
   }).catch((err)=>{
-  console.log("testr");
-
     res.status(500).json({
       success:false,
       message:"Server Error"
