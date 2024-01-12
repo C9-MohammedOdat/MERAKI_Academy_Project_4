@@ -112,7 +112,7 @@ const Register = () => {
             >
               <option value="Furniture delivery">Furniture Delivery</option>
               <option value="Car transporter">Car Transporter</option>
-              <option value="Taxi">Taxi</option>
+              <option value="Gas Cylinders Delivery">Gas Cylinders Delivery</option>
             </Form.Select></Form.Group>
            
           )}

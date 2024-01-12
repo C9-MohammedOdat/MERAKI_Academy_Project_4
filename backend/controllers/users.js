@@ -88,6 +88,30 @@ res.status(200).json({
 });
 
 }
+const getUserByService=(req,res)=>{
+  console.log(req.params);
+  userModel.find({serviceType:req.params.service}).then((result)=>{
+    if(result.length){
+      res.status(200).json({
+        success: true,
+        message: `All the ${req.params.service} users`,
+        users: result,
+      });
+    }else {
+      res.status(200).json({
+        success: false,
+        message: `No ${req.params.service} users Yet`,
+      });
+    }
+  }).catch((err)=>{
+  console.log("testr");
+
+    res.status(500).json({
+      success:false,
+      message:"Server Error"
+    })
+  })
+}
 const getAllUser=(req,res)=>{
   userModel.find({}).populate("role","role").then((result)=>{
     if(result.length){
@@ -163,6 +187,6 @@ module.exports = {
     register,
     login,
     getAllUser,
-    getUserByRole,deleteUserById,checkUser
+    getUserByRole,deleteUserById,checkUser,getUserByService
   };
   
