@@ -33,8 +33,7 @@ const NavBar = () => {
       </Offcanvas>
     </div> */}
     <Container>
-   
-      <Navbar.Brand href="/">Navbar</Navbar.Brand>
+      <Navbar.Brand href="/">TAWSElA</Navbar.Brand>
       <Nav className="me-auto">
         <Nav.Link href="/">Home</Nav.Link>
        {isLoggedIn||<><Nav.Link href="login">Login</Nav.Link>

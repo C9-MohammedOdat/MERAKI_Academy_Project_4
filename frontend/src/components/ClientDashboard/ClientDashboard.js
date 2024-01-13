@@ -1,4 +1,4 @@
-import React ,{useContext,useEffect,useState} from 'react'
+import React ,{useContext,useEffect,useState,createContext} from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -6,29 +6,27 @@ import "./ClientDashboard.css"
 import logo1 from "../images/Furniture Delivery.jpg" 
 import logo2 from "../images/Car Transporter.jpg"
 import logo3 from "../images/Gas.jpg"
-
+import ServicesForEachCategory from './ServicesForEachCategory/ServicesForEachCategory';
+export const ClientContext = createContext();
 const ClientDashboard = () => {
   const [service, setService] = useState("")
-const [loader, setLoader] = useState(true)
 const [users, setusers] = useState([])
 useEffect(()=>{
-  setLoader(false)
   service&&(
     axios.post(`http://localhost:5000/users/service`,{serviceType:service}).then((result)=>{
       setusers(result.data.users)
-      setLoader(false)
     console.log(result);
   }).catch((err)=>{
     console.log(err);
-    setLoader(false)
   })
  )
  
 },[service])
 
   return (
-    <div className='Services'>
-      {service=="" && (<><Card style={{ width: '25rem' }} className="text-center">
+    <ClientContext.Provider value={{users}}>
+      <div className='Services'>
+      {service==="" &&(<><Card style={{ width: '25rem' }} className="text-center">
       <Card.Img style={{height: '14rem' }} variant="top" src={logo1} />
       <Card.Body>
         <Card.Title>Furniture Delivery</Card.Title>
@@ -66,21 +64,10 @@ Don't worry! With TAWSElA, you can order a gas cylinder quickly & easily
         }}>Book Now</Button>
       </Card.Body>
     </Card></>)}
-    {loader?<div className='loader'></div>:users.length?(users.map((ele,i)=>
-      <div> <Card style={{ width: '25rem' }} className="text-center">
-      <Card.Img style={{height: '14rem' }} variant="top"  />
-      <Card.Body>
-        <Card.Title>{ele.firstName}</Card.Title>
-        <Card.Text style={{textAlign:"left"}}>
-       {ele.phoneNumber}
-        </Card.Text>
-        <Button variant="primary" onClick={()=>{
-          setService("Gas Cylinders Delivery")
-        }}>Book Now</Button>
-      </Card.Body>
-    </Card></div>
-    )):"NO Content"}
-    </div>
+    {service&&<ServicesForEachCategory/>}
+   
+    </div></ClientContext.Provider>
+ 
   )
 }
 

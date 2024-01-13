@@ -11,9 +11,9 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(null);
-  const [typeOfAccount, setTypeOfAccount] = useState("");
+  const [typeOfAccount, setTypeOfAccount] = useState("Client");
   const [role, setRole] = useState("");
-  const [serviceType, setServiceType] = useState("");
+  const [serviceType, setServiceType] = useState("Furniture delivery");
   const sendRegister = () => {
       axios
         .post("http://localhost:5000/users/register", {
