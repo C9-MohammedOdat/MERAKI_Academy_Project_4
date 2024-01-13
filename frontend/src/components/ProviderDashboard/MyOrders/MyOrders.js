@@ -11,9 +11,15 @@ const [loader, setLoader] = useState(true)
 axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
   authorization:`Bearer ${token}`
 }}).then((result)=>{
-  console.log(result.data.services);
-  setOrders(result.data.services)
+  console.log(result.data);
+  if(result.data.success){
+    setOrders(result.data.services)
   setLoader(false)
+  }else{
+    setOrders([])
+    setLoader(false)
+  }
+  
 }).catch((err)=>{
   console.log(err);
   setLoader(false)
@@ -21,7 +27,7 @@ axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
 })
   },[])
     return(<div className='Orders-Page'>
-    {loader?<div className='loader'></div>:<div className='Orders'>{orders.map((ele,i)=>
+    {loader?<div className='loader'></div>:<div className='Orders'>{orders.length!=0?(orders.map((ele,i)=>
       <div className='order'>
         <div className='Name-State'>
           <p>Client: {ele.client.firstName}</p>
@@ -29,7 +35,7 @@ axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
         </div>
         <div className='PhoneNumber'>+{ele.client.phoneNumber}</div>
       </div>
-    )}</div>}
+    )):<p>No Order</p>}</div>}
     </div>
       
     )
