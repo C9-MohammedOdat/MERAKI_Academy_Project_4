@@ -1,13 +1,29 @@
-import React from 'react'
+import React ,{useState,useContext}from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import axios from 'axios'
+import "./CreateOrder.css"
+import {LoginContext} from "../../../../App"
 const CreateOrder = (props) => {
+    const{userId}=useContext(LoginContext())
+    const [client, setClient] = useState(userId)
+    const [units, setUnits] = useState(0)
+    const [notes, setNotes] = useState("")
+    const [provider, setProvider] = useState(props.providerId)
+    const newOrder=()=>{
+        axios.post("http://localhost:5000/orders",{provider,client,notes,units}).then((result)=>{
+            console.log(result);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
     return (
       <>
        
        <Modal
         {...props}
+      
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -27,13 +43,33 @@ const CreateOrder = (props) => {
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label><h6>Notes</h6></Form.Label>
         <Form.Control as="textarea" rows={3} />
-      </Form.Group>
+       </Form.Group>
+   {props.service==="Gas Cylinders Delivery" &&<>   <div className='gas-info'>
+        <div> <Form.Label><h6>Number Of Cylinders:</h6></Form.Label>
+      <Form.Control
+      style={{width:"5rem"}}
+            type="number"
+           onChange={(e)=>{
+setUnits(e.target.value)
+           }}
+          /></div>
+          <div><p>Price/Cylinder:</p>
+          <p>7 JD</p>
+          </div>
+      </div>
+<div><p>Total Price Of Cylinders (Without Deleviry Price):</p>
+<p>{units*7} JD</p>
+     </div></>}
+         
     </Form>
 
 
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={()=>{
+            console.log("test");
+            newOrder()
+          }} >Order</Button>
         </Modal.Footer>
       </Modal>
         

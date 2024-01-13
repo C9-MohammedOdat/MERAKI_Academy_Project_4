@@ -20,7 +20,9 @@ const ServicesForEachCategory = () => {
           Order Now
         </Button>
         <CreateOrder
+        service={ele.serviceType}
         name={ele.firstName}
+        providerId={ele._id}
           show={modalShow}
           onHide={() => setModalShow(false)}
         />

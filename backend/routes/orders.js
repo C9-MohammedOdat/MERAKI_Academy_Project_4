@@ -3,7 +3,7 @@ const{createNewOrder,getAllClientsOrders,getAllProvidersOrders,deleteOrderById,u
 const authentication=require("../middleware/authentication")
 const authorization=require("../middleware/authorization")
 const ordersRouter=express.Router()
-ordersRouter.post("/",createNewOrder)
+ordersRouter.post("/",authentication,authorization("CREATE_ORDERS"),createNewOrder)
 ordersRouter.get("/client/:id",getAllClientsOrders)
 ordersRouter.get("/provider/:id",authentication,getAllProvidersOrders)
 ordersRouter.delete("/:id",deleteOrderById)
