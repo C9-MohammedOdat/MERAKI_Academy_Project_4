@@ -2,7 +2,7 @@ import React,{useState,useContext,useEffect} from 'react'
 import "./MyOrders.css"
 import axios from 'axios'
 import { LoginContext } from '../../../App'
-const MyOrders = () =>{
+const MyOrders = ({state}) =>{
   const {token,userId, setUserId,isLoggedIn,role, setRole}=useContext(LoginContext)
   const [orders, setOrders] = useState([])
 const [loader, setLoader] = useState(true)
@@ -11,7 +11,6 @@ const [loader, setLoader] = useState(true)
 axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
   authorization:`Bearer ${token}`
 }}).then((result)=>{
-  console.log(result.data);
   if(result.data.success){
     setOrders(result.data.services)
   setLoader(false)
@@ -26,8 +25,11 @@ axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
 
 })
   },[])
+const filteredOrders=orders.filter((ele,i)=>{
+  return ele.state===state
+})
     return(<div className='Orders-Page'>
-    {loader?<div className='loader'></div>:<div className='Orders'>{orders.length!=0?(orders.map((ele,i)=>
+    {loader?<div className='loader'></div>:<div className='Orders'>{filteredOrders.length!=0?(filteredOrders.map((ele,i)=>
       <div className='order'>
         <div className='Name-State'>
           <p>Client: {ele.client.firstName}</p>

@@ -31,7 +31,7 @@ useEffect(()=>{
       <Card.Body>
         <Card.Title>Furniture Delivery</Card.Title>
         <Card.Text style={{textAlign:"left"}}>
-        With TAWSElA you can book furniture delivery services the same day fromalmost anywhere. 
+        With TAWSELA you can book furniture delivery services the same day fromalmost anywhere. 
         </Card.Text>
         <Button variant="primary" onClick={()=>{
           setService("Furniture delivery")
@@ -44,7 +44,7 @@ useEffect(()=>{
         <Card.Title>Car Transporter</Card.Title>
         <Card.Text style={{textAlign:"left"}}>
         Did your car break down??
-Don't worry! With TAWSElA, you can now order a winch to transport your car.
+Don't worry! With TAWSELA, you can now order a winch to transport your car.
         </Card.Text>
         <Button variant="primary" onClick={()=>{
           setService("Car transporter")
@@ -57,7 +57,7 @@ Don't worry! With TAWSElA, you can now order a winch to transport your car.
         <Card.Title>Gas Cylinders Delivery</Card.Title>
         <Card.Text style={{textAlign:"left"}}>
         Is the gas cylinder empty??
-Don't worry! With TAWSElA, you can order a gas cylinder quickly & easily
+Don't worry! With TAWSELA, you can order a gas cylinder quickly & easily
         </Card.Text>
         <Button variant="primary" onClick={()=>{
           setService("Gas Cylinders Delivery")

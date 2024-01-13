@@ -3,6 +3,7 @@ body{
 }
 .provider-page{
     display: flex;
+    flex-direction: column;
     
 }
 .ProviderDashboard{
