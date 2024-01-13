@@ -6,13 +6,14 @@ import axios from 'axios'
 import "./CreateOrder.css"
 import {LoginContext} from "../../../../App"
 const CreateOrder = (props) => {
-    const{userId}=useContext(LoginContext())
+    const{userId,token}=useContext(LoginContext)
     const [client, setClient] = useState(userId)
     const [units, setUnits] = useState(0)
     const [notes, setNotes] = useState("")
     const [provider, setProvider] = useState(props.providerId)
     const newOrder=()=>{
-        axios.post("http://localhost:5000/orders",{provider,client,notes,units}).then((result)=>{
+        axios.post("http://localhost:5000/orders",{provider,client,notes,units},{headers:{authorization:`Bearer ${token}`,
+      }}).then((result)=>{
             console.log(result);
         }).catch((err)=>{
             console.log(err);
