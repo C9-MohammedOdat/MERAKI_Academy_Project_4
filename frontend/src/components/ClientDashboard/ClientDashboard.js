@@ -7,8 +7,10 @@ import logo1 from "../images/Furniture Delivery.jpg"
 import logo2 from "../images/Car Transporter.jpg"
 import logo3 from "../images/Gas.jpg"
 import ServicesForEachCategory from './ServicesForEachCategory/ServicesForEachCategory';
+import { LoginContext } from '../../App';
 export const ClientContext = createContext();
 const ClientDashboard = () => {
+const {userId} =useContext(LoginContext)
   const [service, setService] = useState("")
 const [users, setusers] = useState([])
 useEffect(()=>{
@@ -22,6 +24,13 @@ useEffect(()=>{
  )
  
 },[service])
+axios.get(`http://localhost:5000/orders/client/${userId}`).then((result)=>{
+  console.log(result.data.services);
+  // setNotification(result.data.services)
+  localStorage.setItem("notification",JSON.stringify(result.data.services) )
+}).catch((err)=>{
+  console.log(err);
+})
 
   return (
     <ClientContext.Provider value={{users}}>
