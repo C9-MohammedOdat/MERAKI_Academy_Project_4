@@ -101,7 +101,7 @@ xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi
           {filteredNotification.length!==0&&filteredNotification.map((ele,i)=>
             <div style={{border:"1px solid gray",padding:"5px",borderRadius:"7px", display:"flex",flexDirection:"column",gap:"10px"}}>
           <div><h6>{ele.provider.firstName}</h6></div>
-         {ele.units&&<div>Number Of Cylenders : {ele.units} Cyl</div>} 
+         {ele.units!==0&&<div>Number Of Cylenders : {ele.units} Cyl</div>} 
           <div>Total Price :{ele.price} JD</div>
           <div style={{display:"flex",justifyContent:"flex-end",gap:"5px"}}>
             <Button  variant='primary' onClick={()=>{

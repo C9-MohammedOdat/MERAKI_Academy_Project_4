@@ -77,7 +77,7 @@ setUnits(e.target.value)
           {resFromBack.success?<div style={{color:"green"}}>Order Successful (Waiting a Response From {props.name})</div>:!resFromBack.success?<div>{resFromBack.message}</div>:<div style={{color:"red"}}>{resFromBack}</div>}
           
           <Button onClick={()=>{
-            if(props.service==="Gas Cylinders Delivery"){
+            if(props.service!=="Gas Cylinders Delivery"){
               newOrder()
             }else
             if(units!==0){

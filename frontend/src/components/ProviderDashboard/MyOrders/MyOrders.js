@@ -36,10 +36,11 @@ const updatePrice=(id)=>{
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h6>Price Of Units:</h6>
+        {props.units!==0&&<> <h6>Price Of Units:</h6>
         <p>
           {props.units*7} JD
-        </p>
+        </p></>}
+       
         <h6>Your Delivery Price:</h6>
         <input onChange={(e)=>{
 setDelivery(e.target.value)
@@ -117,7 +118,7 @@ const filteredOrders=orders.filter((ele,i)=>{
         }} variant="danger">Reject</Button>
         </div>}
         </div>
-       <div style={{display:"flex", flexDirection:"column", gap:"10px"}}> {ele.units&&<div>Number Of Cylinder : {ele.units} cyl</div>}
+       <div style={{display:"flex", flexDirection:"column", gap:"10px"}}> {ele.units!==0&&<div>Number Of Cylinder : {ele.units} cyl</div>}
         {ele.notes&&<div>Notes:<p  style={{border:"1px solid",borderRadius:"7px", padding:"5px"}}>{ele.notes}</p></div>}</div>
       </div>
     )):<p>No Order</p>}</div>}
