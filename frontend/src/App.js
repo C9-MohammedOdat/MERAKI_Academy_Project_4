@@ -9,7 +9,7 @@ import ClientDashboard from "./components/ClientDashboard/ClientDashboard";
 import NavBar from "./components/NavBar/NavBar";
 export const LoginContext = createContext();
 function App() {
-  const [role, setRole] = useState({})
+  const [role, setRole] = useState(useState(localStorage.getItem("role") || ""))
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "")
   const [userName, setUserName] = useState(localStorage.getItem("userName")||"")
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn")||false);

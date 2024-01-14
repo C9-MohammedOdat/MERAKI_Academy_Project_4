@@ -13,13 +13,15 @@ const Home = () => {
             setUserName(result.data.info.author)
             localStorage.setItem("userId",result.data.info.userId)
             localStorage.setItem("userName",result.data.info.author)
-            setRole(result.data.info.role)
+            setRole(result.data.info.role.role)
+            localStorage.setItem("role",result.data.info.role.role)
+
         }).catch((err)=>{
             console.log(err);
         })
     },[])
-  role.role==="Provider"&&navigate("providerDashboard")
-  role.role==="Client"&&navigate("clientDashboard")
+  role==="Provider"&&navigate("providerDashboard")
+  role==="Client"&&navigate("clientDashboard")
 }
 
 export default Home
