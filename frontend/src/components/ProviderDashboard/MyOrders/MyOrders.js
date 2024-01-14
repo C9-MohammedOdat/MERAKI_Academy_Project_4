@@ -6,9 +6,23 @@ import axios from 'axios'
 import { LoginContext } from '../../../App'
 
 function MyVerticallyCenteredModal(props) {
+  const {token}=useContext(LoginContext)
   const [delivery, setDelivery] = useState(null)
-const [price, setPrice] = useState(null)
+const [price, setPrice] = useState(0)
+const [show, setShow] = useState(false)
+const [resFromeBack, setResFromeBack] = useState("")
+const updatePrice=(id)=>{
+ axios.put(`http://localhost:5000/orders/${id}`,{price:price},{headers:{authorization:`Bearer ${token}`,
+}}).then((result)=>{
+  console.log(result);
+  setResFromeBack({message:"Successfuly Sent (Waiting A Response)",success:true})
+}).catch((err)=>{
+  console.log(err);
+  setResFromeBack(err.response.data)
+})
 
+   }
+ 
   return (
     <Modal
       {...props}
@@ -29,12 +43,18 @@ const [price, setPrice] = useState(null)
         <h6>Your Delivery Price:</h6>
         <input onChange={(e)=>{
 setDelivery(e.target.value)
-        }} style={{paddingLeft:"3px"}} type='number' placeholder='JD'/>
+setPrice(props.units*7-(-1*e.target.value))
+        }} style={{paddingLeft:"3px"}} type='number' placeholder='JD' min={1}/>
         <h6>Total:</h6>
-        <p>{delivery+props.units*7}</p>
+        <p>{props.units*7-(-1*delivery)}</p>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Send</Button>
+      <Modal.Footer style={{display:"flex", justifyContent:"space-between"}}>
+       
+        <div> {resFromeBack.success?<p style={{color:"green"}}>{resFromeBack.message}</p>:<p style={{color:"red"}}>{resFromeBack.message}</p>}</div>
+       <div>  <Button onClick={()=>{
+          updatePrice(props.id)
+        }}>Send</Button></div>
+     
       </Modal.Footer>
     </Modal>
   );
@@ -45,6 +65,8 @@ const MyOrders = ({state}) =>{
 const [loader, setLoader] = useState(true)
 const [modalShow, setModalShow] = React.useState(false);
 const [units, setUnits] = useState(null)
+const [id, setId] = useState("")
+
 const getAllOrders=()=>{
   setLoader(true)
   axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
@@ -88,6 +110,7 @@ const filteredOrders=orders.filter((ele,i)=>{
        {state==="pending"&& <div>
         <Button onClick={() =>{
           setUnits(ele.units)
+          setId(ele._id)
           setModalShow(true)}} variant="success">Accept</Button>
         <Button onClick={()=>{
           rejectOrder(ele._id)
@@ -100,6 +123,8 @@ const filteredOrders=orders.filter((ele,i)=>{
     )):<p>No Order</p>}</div>}
 
 <MyVerticallyCenteredModal
+id={id}
+orders={orders}
 units={units}
         show={modalShow}
         onHide={() => setModalShow(false)}

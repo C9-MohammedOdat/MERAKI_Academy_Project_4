@@ -7,5 +7,5 @@ ordersRouter.post("/",authentication,authorization("CREATE_ORDERS"),createNewOrd
 ordersRouter.get("/client/:id",getAllClientsOrders)
 ordersRouter.get("/provider/:id",authentication,getAllProvidersOrders)
 ordersRouter.delete("/:id",deleteOrderById)
-ordersRouter.put("/:id",updateOrderById)
+ordersRouter.put("/:id",authentication,updateOrderById)
 module.exports=ordersRouter

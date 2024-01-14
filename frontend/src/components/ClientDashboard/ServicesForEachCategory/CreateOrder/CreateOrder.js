@@ -55,6 +55,7 @@ const CreateOrder = (props) => {
       <Form.Control
       style={{width:"5rem"}}
             type="number"
+            min={1}
            onChange={(e)=>{
 setUnits(e.target.value)
            }}
