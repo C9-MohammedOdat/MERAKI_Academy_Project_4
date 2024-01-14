@@ -5,9 +5,11 @@ import Card from 'react-bootstrap/Card';
 import CreateOrder from './CreateOrder/CreateOrder';
 const ServicesForEachCategory = () => {
     const {users}=useContext(ClientContext)
+    const [name, setName] = useState("")
     const [modalShow, setModalShow] = React.useState(false);
-  return (
-    
+    console.log(users);
+    return (
+  
      users.length?(users.map((ele,i)=>
     <div> <Card style={{ width: '13rem', height:`14rem` }} className="text-center">
     <Card.Img style={{height: '7rem' }} variant="top"  />
@@ -16,12 +18,14 @@ const ServicesForEachCategory = () => {
       <Card.Text style={{textAlign:"left"}}>
      {ele.phoneNumber}
       </Card.Text>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button variant="primary" onClick={() => {
+        setName(ele.firstName)
+        setModalShow(true)}}>
           Order Now
         </Button>
         <CreateOrder
         service={ele.serviceType}
-        name={ele.firstName}
+        name={name}
         providerId={ele._id}
           show={modalShow}
           onHide={() => setModalShow(false)}
