@@ -30,6 +30,10 @@
     display: flex;
     justify-content: space-between;
 }
+.phone-res{
+    display: flex;
+    justify-content: space-between;
+}
 .loader{
     border: 16px solid #f3f3f3;
     border-radius: 50%;

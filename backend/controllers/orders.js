@@ -1,10 +1,10 @@
 const orderModel=require("../models/orders")
 const createNewOrder=(req,res)=>{
-    const{provider,state,client}=req.body
+    const{provider,state,client,notes,units,location}=req.body
     const order =new orderModel({
         provider,
        state,
-        client
+        client,notes,units,location
     }).save()
     .then((result)=>{
         res.status(201).json({

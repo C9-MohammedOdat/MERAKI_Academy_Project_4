@@ -6,7 +6,8 @@ import axios from 'axios'
 import "./CreateOrder.css"
 import {LoginContext} from "../../../../App"
 const CreateOrder = (props) => {
-    const{userId,token,resFromBack,setResFromBack}=useContext(LoginContext)
+    const{userId,token}=useContext(LoginContext)
+    const [resFromBack, setResFromBack] = useState("")
     const [client, setClient] = useState(userId)
     const [units, setUnits] = useState(0)
     const [notes, setNotes] = useState("")
@@ -45,7 +46,9 @@ const CreateOrder = (props) => {
     <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label><h6>Notes</h6></Form.Label>
-        <Form.Control as="textarea" rows={3} />
+        <Form.Control onChange={(e)=>{
+          setNotes(e.target.value)
+        }} as="textarea" rows={3} />
        </Form.Group>
    {props.service==="Gas Cylinders Delivery" &&<>   <div className='gas-info'>
         <div> <Form.Label><h6 style={{display:"flex"}}>{resFromBack==="Please Select Number Of Cylinders"&&<div style={{color:"red"}}>*</div>} Number Of Cylinders:</h6></Form.Label>

@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
     notes:{type:String},
 location:{type:String}, // [longitude, latitude]
 price: {type :Number },
-unites:{type:Number}
+units:{type:Number}
 
 })
 module.exports=mongoose.model("Order",orderSchema)

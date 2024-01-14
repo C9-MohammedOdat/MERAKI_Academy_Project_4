@@ -1,5 +1,7 @@
 import React,{useState,useContext,useEffect} from 'react'
 import "./MyOrders.css"
+import Button from 'react-bootstrap/Button';
+
 import axios from 'axios'
 import { LoginContext } from '../../../App'
 const MyOrders = ({state}) =>{
@@ -35,7 +37,15 @@ const filteredOrders=orders.filter((ele,i)=>{
           <p>Client: {ele.client.firstName}</p>
           <p>{ele.state}</p>
         </div>
+        <div className='phone-res'>
         <div className='PhoneNumber'>+{ele.client.phoneNumber}</div>
+       {state==="pending"&& <div>
+        <Button variant="success">Accept</Button>
+        <Button variant="danger">Reject</Button>
+        </div>}
+        </div>
+       <div style={{display:"flex", flexDirection:"column", gap:"10px"}}> {ele.units&&<div>Number Of Cylinder : {ele.units} cyl</div>}
+        {ele.notes&&<div>Notes:<p  style={{border:"1px solid",borderRadius:"7px", padding:"5px"}}>{ele.notes}</p></div>}</div>
       </div>
     )):<p>No Order</p>}</div>}
     </div>
