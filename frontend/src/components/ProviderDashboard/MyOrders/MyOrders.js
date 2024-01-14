@@ -8,26 +8,32 @@ const MyOrders = ({state}) =>{
   const {token,userId, setUserId,isLoggedIn,role, setRole}=useContext(LoginContext)
   const [orders, setOrders] = useState([])
 const [loader, setLoader] = useState(true)
-  useEffect(()=>{
-    setLoader(true)
-axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
-  authorization:`Bearer ${token}`
-}}).then((result)=>{
-  if(result.data.success){
-    setOrders(result.data.services)
-  setLoader(false)
-  }else{
-    setOrders([])
+const getAllOrders=()=>{
+  setLoader(true)
+  axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
+    authorization:`Bearer ${token}`
+  }}).then((result)=>{
+    if(result.data.success){
+      setOrders(result.data.services)
     setLoader(false)
-  }
-  
-}).catch((err)=>{
-  console.log(err);
-  setLoader(false)
-
-})
+    }else{
+      setOrders([])
+      setLoader(false)
+    }
+    
+  }).catch((err)=>{
+    console.log(err);
+    setLoader(false)
+  })
+}
+  useEffect(()=>{
+   getAllOrders()
   },[])
   const rejectOrder=(id)=>{
+    const newOrders=orders.filter((ele,i)=>{
+      return ele._id!=id
+    })
+    setOrders(newOrders)
     axios.delete(`http://localhost:5000/orders/${id}`)
   }
 const filteredOrders=orders.filter((ele,i)=>{
