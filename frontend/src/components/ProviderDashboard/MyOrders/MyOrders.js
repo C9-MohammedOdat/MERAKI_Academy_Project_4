@@ -1,13 +1,43 @@
 import React,{useState,useContext,useEffect} from 'react'
 import "./MyOrders.css"
 import Button from 'react-bootstrap/Button';
-
+import Modal from 'react-bootstrap/Modal';
 import axios from 'axios'
 import { LoginContext } from '../../../App'
+
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Set Your Price
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h6>Price Of Units:</h6>
+        <p>
+          {props.units*7} JD
+        </p>
+        <h6>Your Dilevry Price:</h6>
+        <input style={{paddingLeft:"3px"}} type='number' placeholder='JD'/>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Send</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 const MyOrders = ({state}) =>{
   const {token,userId, setUserId,isLoggedIn,role, setRole}=useContext(LoginContext)
   const [orders, setOrders] = useState([])
 const [loader, setLoader] = useState(true)
+const [modalShow, setModalShow] = React.useState(false);
+const [units, setUnits] = useState(0)
 const getAllOrders=()=>{
   setLoader(true)
   axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
@@ -49,7 +79,9 @@ const filteredOrders=orders.filter((ele,i)=>{
         <div className='phone-res'>
         <div className='PhoneNumber'>+{ele.client.phoneNumber}</div>
        {state==="pending"&& <div>
-        <Button variant="success">Accept</Button>
+        <Button onClick={() =>{
+          setUnits(ele.units)
+          setModalShow(true)}} variant="success">Accept</Button>
         <Button onClick={()=>{
           rejectOrder(ele._id)
         }} variant="danger">Reject</Button>
@@ -59,6 +91,12 @@ const filteredOrders=orders.filter((ele,i)=>{
         {ele.notes&&<div>Notes:<p  style={{border:"1px solid",borderRadius:"7px", padding:"5px"}}>{ele.notes}</p></div>}</div>
       </div>
     )):<p>No Order</p>}</div>}
+
+<MyVerticallyCenteredModal
+units={units}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
       
     )
