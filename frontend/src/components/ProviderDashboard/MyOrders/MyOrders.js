@@ -27,6 +27,9 @@ axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
 
 })
   },[])
+  const rejectOrder=(id)=>{
+    axios.delete(`http://localhost:5000/orders/${id}`)
+  }
 const filteredOrders=orders.filter((ele,i)=>{
   return ele.state===state
 })
@@ -41,7 +44,9 @@ const filteredOrders=orders.filter((ele,i)=>{
         <div className='PhoneNumber'>+{ele.client.phoneNumber}</div>
        {state==="pending"&& <div>
         <Button variant="success">Accept</Button>
-        <Button variant="danger">Reject</Button>
+        <Button onClick={()=>{
+          rejectOrder(ele._id)
+        }} variant="danger">Reject</Button>
         </div>}
         </div>
        <div style={{display:"flex", flexDirection:"column", gap:"10px"}}> {ele.units&&<div>Number Of Cylinder : {ele.units} cyl</div>}
