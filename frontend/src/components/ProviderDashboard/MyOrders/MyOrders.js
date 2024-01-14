@@ -6,6 +6,9 @@ import axios from 'axios'
 import { LoginContext } from '../../../App'
 
 function MyVerticallyCenteredModal(props) {
+  const [delivery, setDelivery] = useState(null)
+const [price, setPrice] = useState(null)
+
   return (
     <Modal
       {...props}
@@ -23,8 +26,12 @@ function MyVerticallyCenteredModal(props) {
         <p>
           {props.units*7} JD
         </p>
-        <h6>Your Dilevry Price:</h6>
-        <input style={{paddingLeft:"3px"}} type='number' placeholder='JD'/>
+        <h6>Your Delivery Price:</h6>
+        <input onChange={(e)=>{
+setDelivery(e.target.value)
+        }} style={{paddingLeft:"3px"}} type='number' placeholder='JD'/>
+        <h6>Total:</h6>
+        <p>{delivery+props.units*7}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Send</Button>
@@ -37,7 +44,7 @@ const MyOrders = ({state}) =>{
   const [orders, setOrders] = useState([])
 const [loader, setLoader] = useState(true)
 const [modalShow, setModalShow] = React.useState(false);
-const [units, setUnits] = useState(0)
+const [units, setUnits] = useState(null)
 const getAllOrders=()=>{
   setLoader(true)
   axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
