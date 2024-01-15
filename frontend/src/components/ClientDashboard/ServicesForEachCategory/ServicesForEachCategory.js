@@ -21,14 +21,14 @@ const ServicesForEachCategory = () => {
       </Card.Text>
       <Button variant="primary" onClick={() => {
         setName(ele.firstName)
-        setProviderId(ele._id)
-        setModalShow(true)}}>
+        // setProviderId(ele._id)
+        setModalShow(ele._id)}}>
           Order Now
         </Button>
         <CreateOrder
         service={ele.serviceType}
         name={name}
-        providerId={providerId}
+        // providerId={providerId}
           show={modalShow}
           onHide={() => setModalShow(false)}
         />

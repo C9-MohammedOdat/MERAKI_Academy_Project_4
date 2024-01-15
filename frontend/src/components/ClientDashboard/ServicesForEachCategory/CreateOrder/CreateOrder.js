@@ -6,15 +6,14 @@ import axios from 'axios'
 import "./CreateOrder.css"
 import {LoginContext} from "../../../../App"
 const CreateOrder = (props) => {
+  console.log(props);
     const{userId,token}=useContext(LoginContext)
     const [resFromBack, setResFromBack] = useState("")
     const [client, setClient] = useState(userId)
     const [units, setUnits] = useState(0)
     const [notes, setNotes] = useState("")
-    const [provider, setProvider] = useState("")
     const newOrder=()=>{
-      console.log(provider);
-        axios.post("http://localhost:5000/orders",{provider,client,notes,units,state:"pending"},{headers:{authorization:`Bearer ${token}`,
+        axios.post("http://localhost:5000/orders",{provider:props.show,client,notes,units,state:"pending"},{headers:{authorization:`Bearer ${token}`,
       }}).then((result)=>{
             console.log(result);
             setResFromBack(result.data)
@@ -79,12 +78,10 @@ setUnits(e.target.value)
           
           <Button onClick={()=>{
             if(props.service!=="Gas Cylinders Delivery"){
-              setProvider(props.providerId)
               newOrder()
               {props.onHide()}
             }else
             if(units!==0){
-              setProvider(props.providerId)
               newOrder()
               {props.onHide()}
             }else if(props.service==="Gas Cylinders Delivery"){
