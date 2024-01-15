@@ -99,6 +99,7 @@ const MyOrders = ({ state }) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [units, setUnits] = useState(null);
   const [id, setId] = useState("");
+  const [id_1, setId_1] = useState("")
   const [show, setShow] = useState(false);
   const getAllOrders = () => {
     setLoader(true);
@@ -212,12 +213,13 @@ const MyOrders = ({ state }) => {
                 {state === "processing" && (
                   <div
                     style={
-                      show
+                      (show&&id_1===ele._id)
                         ? { display: "flex", justifyContent: "space-between" }
                         : { display: "flex", justifyContent: "flex-end" }
                     }
                   >
-                    {show && (
+                    {(show&&id_1===ele._id) && (
+                  
                       <div style={{ color: "red" }}>
                         <h4>Collect Cash : {ele.price} JD</h4>
                       </div>
@@ -227,14 +229,16 @@ const MyOrders = ({ state }) => {
                         show&&
                           updateOrder(ele._id)
                           setShow(!show)
-                        show|| setShow(!show);
+                        show||setId_1(ele._id) 
+                        setShow(!show);
                       }}
-                      variant={show ? "success" : "primary"}
+                      variant={(show&&id_1===ele._id) ? "success" : "primary"}
                     >
-                      {show ? "Collect" : "Complete"}
+                      {(show&&id_1===ele._id) ? "Collect" : "Complete"}
                     </Button>
                   </div>
                 )}
+                {state==="completed"&&<div>Colected Cash : {ele.price} JD</div>}
               </div>
             ))
           ) : (
