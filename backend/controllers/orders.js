@@ -116,7 +116,7 @@ const createNewOrder=(req,res)=>{
                 res.status(200).json({
                     success:true,
                     message:`All orders `,
-                    services:result
+                    orders:result
                 })
               }else{
                 res.status(200).json({

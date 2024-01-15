@@ -15,9 +15,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn")||false);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [resFromBack, setResFromBack] = useState("")
-  const [notification, setNotification] = useState(JSON.parse(localStorage.getItem("notification"))||[])
   return (
-    <LoginContext.Provider value={{setIsLoggedIn,setToken,token,isLoggedIn,resFromBack,setResFromBack,userId, setUserId,role, setRole,userName, setUserName,notification, setNotification}}>
+    <LoginContext.Provider value={{setIsLoggedIn,setToken,token,isLoggedIn,resFromBack,setResFromBack,userId, setUserId,role, setRole,userName, setUserName}}>
       <NavBar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
