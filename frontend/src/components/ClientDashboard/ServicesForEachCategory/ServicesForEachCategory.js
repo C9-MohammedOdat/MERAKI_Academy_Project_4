@@ -6,6 +6,7 @@ import CreateOrder from './CreateOrder/CreateOrder';
 const ServicesForEachCategory = () => {
     const {users}=useContext(ClientContext)
     const [name, setName] = useState("")
+    const [providerId, setProviderId] = useState("")
     const [modalShow, setModalShow] = React.useState(false);
     console.log(users);
     return (
@@ -20,13 +21,14 @@ const ServicesForEachCategory = () => {
       </Card.Text>
       <Button variant="primary" onClick={() => {
         setName(ele.firstName)
+        setProviderId(ele._id)
         setModalShow(true)}}>
           Order Now
         </Button>
         <CreateOrder
         service={ele.serviceType}
         name={name}
-        providerId={ele._id}
+        providerId={providerId}
           show={modalShow}
           onHide={() => setModalShow(false)}
         />

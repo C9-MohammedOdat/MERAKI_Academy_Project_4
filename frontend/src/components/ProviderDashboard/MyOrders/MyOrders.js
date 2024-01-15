@@ -64,7 +64,7 @@ function MyVerticallyCenteredModal(props) {
           min={1}
         />
         <h6>Total:</h6>
-        <p>{props.units * 7 - -1 * delivery}</p>
+        <p>{price}</p>
       </Modal.Body>
       <Modal.Footer
         style={{ display: "flex", justifyContent: "space-between" }}
@@ -82,6 +82,7 @@ function MyVerticallyCenteredModal(props) {
           <Button
             onClick={() => {
               updatePrice(props.id);
+
             }}
           >
             Send

@@ -11,8 +11,9 @@ const CreateOrder = (props) => {
     const [client, setClient] = useState(userId)
     const [units, setUnits] = useState(0)
     const [notes, setNotes] = useState("")
-    const [provider, setProvider] = useState(props.providerId)
+    const [provider, setProvider] = useState("")
     const newOrder=()=>{
+      console.log(provider);
         axios.post("http://localhost:5000/orders",{provider,client,notes,units,state:"pending"},{headers:{authorization:`Bearer ${token}`,
       }}).then((result)=>{
             console.log(result);
@@ -78,10 +79,14 @@ setUnits(e.target.value)
           
           <Button onClick={()=>{
             if(props.service!=="Gas Cylinders Delivery"){
+              setProvider(props.providerId)
               newOrder()
+              {props.onHide()}
             }else
             if(units!==0){
+              setProvider(props.providerId)
               newOrder()
+              {props.onHide()}
             }else if(props.service==="Gas Cylinders Delivery"){
               setResFromBack("Please Select Number Of Cylinders")
             }

@@ -24,12 +24,13 @@ useEffect(()=>{
  )
  
 },[service])
-axios.get(`http://localhost:5000/orders/client/${userId}`).then((result)=>{
+useEffect(()=>{axios.get(`http://localhost:5000/orders/client/${userId}`).then((result)=>{
   console.log(result.data.services);
   localStorage.setItem("notification",JSON.stringify(result.data.services) )
 }).catch((err)=>{
   console.log(err);
-})
+})},[1])
+
 
   return (
     <ClientContext.Provider value={{users}}>
