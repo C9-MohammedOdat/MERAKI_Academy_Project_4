@@ -15,7 +15,7 @@ function MyVerticallyCenteredModal(props) {
     axios
       .put(
         `http://localhost:5000/orders/${id}`,
-        { price: price },
+        { price: price,state:"Waiting" },
         { headers: { authorization: `Bearer ${token}` } }
       )
       .then((result) => {
@@ -162,7 +162,7 @@ const MyOrders = ({ state }) => {
                 </div>
                 <div className="phone-res">
                   <div className="PhoneNumber">+{ele.client.phoneNumber}</div>
-                  {state === "pending" && (
+                  {state === "pending"&& (
                     <div>
                       <Button
                         onClick={() => {

@@ -18,6 +18,7 @@ const NavBar = () => {
     const [show1, setShow1] = useState(false);
     const handleClose1 = () => setShow1(false);
     const handleShow1 = () => setShow1(true);
+    const [empty, setEmpty] = useState("")
   const navigate=useNavigate()
    const getNotification=()=>{
     axios.get(`http://localhost:5000/orders/notification/${userId}`,{headers:{authorization:`Bearer ${token}`,
@@ -27,7 +28,7 @@ const NavBar = () => {
     setNotification(result.data.orders)
    }
    else{
-   
+   setEmpty("No Notification")
    }
     console.log(result);
   }).catch((err)=>{
@@ -119,6 +120,7 @@ xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill={notification?"re
           <Offcanvas.Title>Notification</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body style={{display:"flex", flexDirection:"column"}}>
+          {empty&&<div>{empty}</div>}
           {notification && notification?.map((ele,i)=>
             <div style={{border:"1px solid gray",padding:"5px",borderRadius:"7px", display:"flex",flexDirection:"column",gap:"10px"}}>
           <div><h6>{ele.provider.firstName}</h6></div>
