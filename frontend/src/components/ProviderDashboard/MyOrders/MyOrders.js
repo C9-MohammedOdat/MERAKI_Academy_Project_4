@@ -67,7 +67,7 @@ const [loader, setLoader] = useState(true)
 const [modalShow, setModalShow] = React.useState(false);
 const [units, setUnits] = useState(null)
 const [id, setId] = useState("")
-
+const [show, setShow] = useState(false)
 const getAllOrders=()=>{
   setLoader(true)
   axios.get(`http://localhost:5000/orders/provider/${userId}`,{headers:{
@@ -119,7 +119,13 @@ const filteredOrders=orders.filter((ele,i)=>{
         </div>}
         </div>
        <div style={{display:"flex", flexDirection:"column", gap:"10px"}}> {ele.units!==0&&<div>Number Of Cylinder : {ele.units} cyl</div>}
-        {ele.notes&&<div>Notes:<p  style={{border:"1px solid",borderRadius:"7px", padding:"5px"}}>{ele.notes}</p></div>}</div>
+        {ele.notes&&<div>Notes:<p  style={{border:"1px solid",borderRadius:"7px", padding:"5px",width:"75%"} }>{ele.notes}</p></div>}
+        </div>
+        {state==="processing"&& <div style={show?{display:"flex",justifyContent:"space-between"}:{display:"flex",justifyContent:"flex-end"}}>
+        {show && <div style={{color:'red'}}><h4 >Collect Cash : </h4><h4>{ele.price} JD</h4></div>}
+        <Button onClick={() =>{
+          show?setShow(!show):setShow(!show)
+        }} variant={show?"success":"primary"}>{show?"Collect":"Complete"}</Button></div>}
       </div>
     )):<p>No Order</p>}</div>}
 
