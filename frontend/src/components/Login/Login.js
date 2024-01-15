@@ -6,9 +6,11 @@ import { LoginContext } from "../../App"
 import { useNavigate } from "react-router-dom"
 const Login = () => {
     const navigate=useNavigate()
-    const{setIsLoggedIn,setToken,token,isLoggedIn,resFromBack,setResFromBack}=useContext(LoginContext)
+    const{setIsLoggedIn,setToken,token,isLoggedIn}=useContext(LoginContext)
+    const [resFromBack, setResFromBack] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    
     const sendLogin=()=>{
     axios.post("http://localhost:5000/users/login",{email,password}).then((result)=>{
         console.log(result);

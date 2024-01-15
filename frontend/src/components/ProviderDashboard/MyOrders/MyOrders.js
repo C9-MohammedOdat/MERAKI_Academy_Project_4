@@ -19,6 +19,7 @@ function MyVerticallyCenteredModal(props) {
         { headers: { authorization: `Bearer ${token}` } }
       )
       .then((result) => {
+  
         console.log(result);
         setResFromeBack({
           message: "Successfuly Sent (Waiting A Response)",
@@ -64,7 +65,7 @@ function MyVerticallyCenteredModal(props) {
           min={1}
         />
         <h6>Total:</h6>
-        <p>{price}</p>
+        <p>{price} JD</p>
       </Modal.Body>
       <Modal.Footer
         style={{ display: "flex", justifyContent: "space-between" }}
@@ -203,7 +204,7 @@ const MyOrders = ({ state }) => {
                           border: "1px solid",
                           borderRadius: "7px",
                           padding: "5px",
-                          width: "75%",
+                          
                         }}
                       >
                         {ele.notes}
@@ -227,10 +228,10 @@ const MyOrders = ({ state }) => {
                     )}
                     <Button
                       onClick={() => {
-                        show&&
+                        (show&&id_1===ele._id)&&
                           updateOrder(ele._id)
                           setShow(!show)
-                        show||setId_1(ele._id) 
+                          show||setId_1(ele._id) 
                         setShow(!show);
                       }}
                       variant={(show&&id_1===ele._id) ? "success" : "primary"}
