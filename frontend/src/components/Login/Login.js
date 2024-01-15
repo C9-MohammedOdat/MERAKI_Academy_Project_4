@@ -38,7 +38,7 @@ const Login = () => {
         }} type='password' placeholder='Password'/></div>
 
         <div><button className="Login-btn" onClick={sendLogin}>Login</button></div>
-        {resFromBack.success||<div className={resFromBack.success?"succ":"err"}>{resFromBack.message}</div>}
+        {resFromBack&&<div className={resFromBack.success?"succ":"err"}>{resFromBack.message}</div>}
         </div>
   )
 }

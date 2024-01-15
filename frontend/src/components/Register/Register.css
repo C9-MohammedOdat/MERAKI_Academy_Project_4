@@ -5,7 +5,7 @@
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     text-align: center;
     gap: 25px;
@@ -23,7 +23,7 @@
 .err{
     padding-top:3px;
     border-radius: 10px;
-    height: 40px;
+    height: 50px;
     background-color: hsla(0, 100%, 50%, 0.402);
     color: white;
     text-align: center;
@@ -31,7 +31,7 @@
 .succ{
     padding-top:3px;
     border-radius: 10px;
-    height: 40px;
+    height: 50px;
     background-color: rgb(78, 142, 78);
     color: black;
     text-align: center;
