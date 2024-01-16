@@ -1,5 +1,5 @@
 const express = require("express");
-const { register,checkUser,login,getAllUser,getUserByRole,deleteUserById,getUserByService} = require("../controllers/users");
+const { register,checkUser,login,getAllUser,getUserByRole,deleteUserById,getUserByService,getUserById,updateUserById} = require("../controllers/users");
 const authentication =require("../middleware/authentication")
 const cors =require("cors")
 const usersRouter = express.Router();
@@ -10,4 +10,6 @@ usersRouter.get("/check",authentication,checkUser)
 usersRouter.get("/:id",getUserByRole)
 usersRouter.delete("/:id",deleteUserById)
 usersRouter.post("/service",getUserByService)
+usersRouter.get("/user/:id",authentication,getUserById)
+usersRouter.put("/:id",updateUserById)
 module.exports = usersRouter;

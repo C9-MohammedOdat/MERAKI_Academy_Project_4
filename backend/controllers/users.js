@@ -180,10 +180,55 @@ await res.status(200).json({
   image:req.image
 })
     }
+
+    const getUserById=(req,res)=>{
+      userModel.find({_id:req.params.id}).then((result)=>{
+        if(result.length){
+          res.status(200).json({
+            success: true,
+            message:"user Found",
+            user: result,
+          });
+        }else {
+          res.status(200).json({
+            success: false,
+            message: `user not found`,
+          });
+        }
+      }).catch((err)=>{
+        res.status(500).json({
+          success:false,
+          message:"Server Error"
+        })
+      })
+    }
+    const updateUserById=()=>{
+      const update =req.body;
+      const id=req.params.id
+      userModel.findByIdAndUpdate(id,update).then((result)=>{
+        if(!result){
+          return res.status(404).json({
+              success:false,
+              message:`user With id ${id} Not Found`
+          })
+      }
+      res.status(200).json({
+          success:true,
+          message:"user Updated",
+          order:result
+      })
+  }).catch((err)=>{
+      res.status(500).json({
+          success:false,
+          message:"Server Error",
+          error:err
+      })
+      })
+    }
 module.exports = {
     register,
     login,
     getAllUser,
-    getUserByRole,deleteUserById,checkUser,getUserByService
+    getUserByRole,deleteUserById,checkUser,getUserByService,getUserById,updateUserById
   };
   
