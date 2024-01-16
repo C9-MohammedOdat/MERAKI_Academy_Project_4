@@ -202,7 +202,7 @@ await res.status(200).json({
         })
       })
     }
-    const updateUserById=()=>{
+    const updateUserById=(req,res)=>{
       const update =req.body;
       const id=req.params.id
       userModel.findByIdAndUpdate(id,update).then((result)=>{

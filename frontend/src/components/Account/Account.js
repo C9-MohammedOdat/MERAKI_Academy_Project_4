@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../App';
 import axios from 'axios';
-import "./Test.css"
+import "./Account.css"
 import logo from "../images/user.png"
 import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card';
-const Test = () => {
+const Account = () => {
     const {userId,token}=useContext(LoginContext)
     const [loader, setLoader] = useState(true)
     const [image, setImage ] = useState("");
@@ -15,7 +15,7 @@ const Test = () => {
     const [show, setShow] = useState(false)
     const [field, setField] = useState("")
     const updateUser=()=>{
-        axios.put(`http://localhost:5000/users/${userId}`,{image:url},{ headers: { authorization: `Bearer ${token}` } }).then((result)=>{
+        axios.put(`http://localhost:5000/users/${userId}`,update,{ headers: { authorization: `Bearer ${token}` } }).then((result)=>{
             console.log(result);
         }).catch((err)=>{
             console.log(err);
@@ -45,6 +45,8 @@ const Test = () => {
     .then(resp => resp.json())
     .then(data => {
     setUrl(data.url)
+    update.image=data.url
+    console.log(data.url);
     updateUser()
     })
     .catch(err => console.log(err))
@@ -108,7 +110,7 @@ const Test = () => {
     )
     }
 
-export default Test
+export default Account
 
 
 
