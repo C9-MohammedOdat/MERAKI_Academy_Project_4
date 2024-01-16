@@ -7,6 +7,7 @@ import ProviderDashboard from "./components/ProviderDashboard/ProviderDashboard"
 import Home from "./components/Home/Home";
 import ClientDashboard from "./components/ClientDashboard/ClientDashboard";
 import NavBar from "./components/NavBar/NavBar";
+import Test from "./components/Test/Test";
 export const LoginContext = createContext();
 function App() {
   const [role, setRole] = useState(useState(localStorage.getItem("role") || ""))
@@ -23,6 +24,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register/>}/>
         <Route path="providerDashboard/*" element={<ProviderDashboard/>}/>
+        <Route path="test" element={<Test/>}/>
         <Route path="clientDashboard" element={<ClientDashboard/>}/>
       </Routes>
     </LoginContext.Provider>
