@@ -17,11 +17,25 @@ const NavBar = () => {
   const [notification, setNotification] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [user, setUser] = useState({})
+  const [url, setUrl] = useState("")
   const [show1, setShow1] = useState(false);
   const handleClose1 = () => setShow1(false);
   const handleShow1 = () => setShow1(true);
   const [empty, setEmpty] = useState("");
   const navigate = useNavigate();
+  useEffect(()=>{
+    // setLoader(true)
+    axios.get(  `http://localhost:5000/users/user/${userId}`,{ headers: { authorization: `Bearer ${token}` } }).then((result)=>{
+        // setLoader(false)
+        console.log(result);
+        setUser(result.data.user[0])
+        result.data.user[0].image&&setUrl(result.data.user[0].image)
+    }).catch((err)=>{
+        // setLoader(false)
+        console.log(err);
+    })
+},[])
   const getNotification = () => {
     axios
       .get(`http://localhost:5000/orders/notification/${userId}`, {
@@ -116,7 +130,7 @@ const NavBar = () => {
             >
               <div style={{ width: "50%", height: "25%", alignSelf: "center" }}>
                 {" "}
-                <img src={logo} style={{ borderRadius: "50%" }} />
+                <img src={url?url:logo} style={{ borderRadius: "50%" }} />
               </div>
               <div>
                 <div

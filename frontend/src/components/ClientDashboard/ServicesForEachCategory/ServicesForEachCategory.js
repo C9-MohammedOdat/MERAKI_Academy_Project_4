@@ -13,9 +13,9 @@ const ServicesForEachCategory = () => {
     return (
   
      users.length?(users.map((ele,i)=>
-    <div> <Card style={{ width: '13rem', height:`14rem` }} className="text-center">
+    <div > <Card style={{ width: '13rem', height:`24rem` }} className="text-center">
     <Card.Img style={{height: '7rem' }} variant="top" src={ele.image?ele.image:logo}  />
-    <Card.Body>
+    <Card.Body style={{height: '18rem' }}>
       <Card.Title>{ele.firstName}</Card.Title>
       <Card.Text style={{textAlign:"left"}}>
      {ele.phoneNumber}
