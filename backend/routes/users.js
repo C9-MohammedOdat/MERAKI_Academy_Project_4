@@ -11,5 +11,5 @@ usersRouter.get("/:id",getUserByRole)
 usersRouter.delete("/:id",deleteUserById)
 usersRouter.post("/service",getUserByService)
 usersRouter.get("/user/:id",authentication,getUserById)
-usersRouter.put("/:id",updateUserById)
+usersRouter.put("/:id",authentication,updateUserById)
 module.exports = usersRouter;

@@ -18,3 +18,19 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+  .info{
+    display: flex;
+    height: 20vh;
+   
+    justify-content: space-around;
+  }
+  .right-side{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  /* .right-side img{
+    border-radius: 50%;
+align-self: center;
+
+  } */

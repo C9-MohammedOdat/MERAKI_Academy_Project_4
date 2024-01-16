@@ -206,12 +206,6 @@ await res.status(200).json({
       const update =req.body;
       const id=req.params.id
       userModel.findByIdAndUpdate(id,update).then((result)=>{
-        if(!result){
-          return res.status(404).json({
-              success:false,
-              message:`user With id ${id} Not Found`
-          })
-      }
       res.status(200).json({
           success:true,
           message:"user Updated",

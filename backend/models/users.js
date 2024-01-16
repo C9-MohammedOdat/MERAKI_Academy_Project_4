@@ -15,8 +15,8 @@ userSchema.pre("save", async function () {
     this.password = await bcrypt.hash(this.password, 10);
   });
 
-  userSchema.post("findByIdAndUpdate",function () {
-    this.email = this.email.toLowerCase();
-    this.password = bcrypt.hash(this.password, 10);
-  });
+  // userSchema.post("findByIdAndUpdate",function () {
+  //   this.email = this.email.toLowerCase();
+  //   this.password = bcrypt.hash(this.password, 10);
+  // });
 module.exports=mongoose.model("User",userSchema)
