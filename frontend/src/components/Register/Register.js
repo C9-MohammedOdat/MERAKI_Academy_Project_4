@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {  useNavigate } from "react-router-dom";
 import "./Register.css";
 import axios from "axios";
 import { LoginContext } from "../../App";
@@ -13,7 +14,9 @@ const Register = () => {
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [typeOfAccount, setTypeOfAccount] = useState("Client");
   const [role, setRole] = useState("");
-  const [serviceType, setServiceType] = useState("Furniture delivery");
+  const [serviceType, setServiceType] = useState
+  ("Furniture delivery");
+  const navigate = useNavigate();
   const sendRegister = () => {
       axios
         .post("http://localhost:5000/users/register", {
@@ -124,6 +127,9 @@ const Register = () => {
               {resFromBack.message}
             </div>
           )}
+          <div>Already have an account?<span style={{color:"black", cursor:"pointer"}} onClick={()=>{
+            navigate("/login")
+          }}>Sign In</span></div>
         </Form.Group>
       </Form>
     </div>

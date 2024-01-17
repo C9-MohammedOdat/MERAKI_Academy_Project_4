@@ -41,6 +41,9 @@ const Login = () => {
 
         <div><button className="Login-btn" onClick={sendLogin}>Login</button></div>
         {resFromBack&&<div className={resFromBack.success?"succ":"err"}>{resFromBack.message}</div>}
+        <div style={{color:"white"}}>Don't have an account?<span style={{color:"black", cursor:"pointer"}} onClick={()=>{
+            navigate("/register")
+        }}>Register</span></div>
         </div>
   )
 }

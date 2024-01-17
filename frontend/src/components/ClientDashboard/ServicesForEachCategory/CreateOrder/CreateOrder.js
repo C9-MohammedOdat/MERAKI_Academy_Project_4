@@ -65,13 +65,8 @@ const CreateOrder = (props) => {
             <h6>Please Set Your Location</h6>
             <p>If you want to set Currunt Location Click On Currunt Location ,If you want to set Other Location Click On Other Location</p>
             <div style={{display:"flex" ,justifyContent:"space-between"}}><Button onClick={getLocation}>Currunt Location</Button>
-            <Button onClick={()=>{
-              setOther(!other)
-            }} variant="warning">Other Location</Button></div>
+           </div>
             {status&&<p>*{status}</p>}
-            {other&&<div>
-              Please Follow the steps
-              </div>}
             
 
    <br/>

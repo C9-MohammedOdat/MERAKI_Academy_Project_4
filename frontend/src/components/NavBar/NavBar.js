@@ -197,7 +197,9 @@ const NavBar = () => {
       )}
       {/**/}
       <Container>
-      <span style={{height:"60px", width:"60px"}}> <img src={logo3}/> </span>
+      <span style={{height:"60px", width:"60px" ,cursor:"pointer"}}> <img  onClick={()=>{
+        navigate("/")
+      }} src={logo3}/> </span>
         <Navbar.Brand href="/">TAWSELA</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
