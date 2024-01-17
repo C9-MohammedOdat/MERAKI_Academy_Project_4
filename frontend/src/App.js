@@ -9,6 +9,7 @@ import ClientDashboard from "./components/ClientDashboard/ClientDashboard";
 import NavBar from "./components/NavBar/NavBar";
 import Account from "./components/Account/Account";
 import  Location from "./components/Location/Location";
+import TestLocation from "./components/TestLocation/TestLocation"
 export const LoginContext = createContext();
 function App() {
   const [role, setRole] = useState(useState(localStorage.getItem("role") || ""))
@@ -27,6 +28,7 @@ function App() {
         <Route path="providerDashboard/*" element={<ProviderDashboard/>}/>
         <Route path="account" element={<Account/>}/>
         <Route path="location" element={<Location/>}/>
+        <Route path="testlocation" element={<TestLocation/>}/>
         <Route path="clientDashboard" element={<ClientDashboard/>}/>
       </Routes>
     </LoginContext.Provider>
