@@ -10,7 +10,7 @@
     text-align: center;
     gap: 25px;
  
-	background: linear-gradient(to top,#281a44, #215464)  
+    background: linear-gradient(to top,#7a797e, #215464);  
 }
 .inputs{
     display: flex;

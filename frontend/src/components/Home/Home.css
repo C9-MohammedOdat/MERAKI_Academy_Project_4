@@ -5,9 +5,10 @@
     /* justify-content: center; */
     width: 100;
     height: 100%;
-    background-image: url("../images/home.jpg");
-   background-repeat: no-repeat;
-   background-size: cover;
+    /* background-image: url("../images/home.jpg"); */
+   /* background-repeat: no-repeat; */
+   /* background-size: cover; */
+   background: linear-gradient(to top,#7a797e, #215464);
    text-align: center;
 
 }
@@ -17,7 +18,7 @@
     font-size: 4em;
 }
 .carousel-inner{
-     height: 600px;;
+     height:75vh;
 }
 
 .item, img{
@@ -26,6 +27,6 @@
 }
 .cards{
     display: flex;
-    justify-content: center ;
-    gap: 25px;
+    justify-content: space-evenly ;
+    /* gap: 25px; */
 }

@@ -9,7 +9,8 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import "./NavBar.css";
 import { LoginContext } from "../../App";
 import axios from "axios";
-import logo from "../images/user.png";
+import logo from "../images/user1.jpg";
+import logo3 from "../images/logo3.png"
 const NavBar = () => {
   const { isLoggedIn, role, token, userId, setIsLoggedIn ,userName} =
     useContext(LoginContext);
@@ -194,7 +195,9 @@ const NavBar = () => {
           </Offcanvas>
         </div>
       )}
+      {/**/}
       <Container>
+      <span style={{height:"60px", width:"60px"}}> <img src={logo3}/> </span>
         <Navbar.Brand href="/">TAWSELA</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>

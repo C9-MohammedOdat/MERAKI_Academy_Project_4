@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../App';
 import axios from 'axios';
 import "./Account.css"
-import logo from "../images/user.png"
+import logo from "../images/user1.jpg"
 import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card';
 const Account = () => {

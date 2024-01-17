@@ -3,7 +3,7 @@ import { ClientContext } from '../ClientDashboard'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CreateOrder from './CreateOrder/CreateOrder';
-import logo from "../../images/user.png"
+import logo from "../../images/user1.jpg"
 const ServicesForEachCategory = () => {
     const {users}=useContext(ClientContext)
     const [name, setName] = useState("")
@@ -13,9 +13,9 @@ const ServicesForEachCategory = () => {
     return (
   
      users.length?(users.map((ele,i)=>
-    <div > <Card style={{ width: '13rem', height:`24rem` }} className="text-center">
-    <Card.Img style={{height: '7rem' }} variant="top" src={ele.image?ele.image:logo}  />
-    <Card.Body style={{height: '18rem' }}>
+    <div > <Card style={{ width: '13rem', height:`19rem`, }} className="text-center">
+    <Card.Img  variant="top" src={ele.image?ele.image:logo}  />
+    <Card.Body>
       <Card.Title>{ele.firstName}</Card.Title>
       <Card.Text style={{textAlign:"left"}}>
      {ele.phoneNumber}

@@ -70,7 +70,7 @@ const CreateOrder = (props) => {
             }} variant="warning">Other Location</Button></div>
             {status&&<p>*{status}</p>}
             {other&&<div>
-              
+              Please Follow the steps
               </div>}
             
 
