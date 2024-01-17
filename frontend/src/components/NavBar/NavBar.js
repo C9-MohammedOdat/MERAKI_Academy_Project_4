@@ -11,7 +11,7 @@ import { LoginContext } from "../../App";
 import axios from "axios";
 import logo from "../images/user.png";
 const NavBar = () => {
-  const { isLoggedIn, role, token, userId, setIsLoggedIn } =
+  const { isLoggedIn, role, token, userId, setIsLoggedIn ,userName} =
     useContext(LoginContext);
   const [show, setShow] = useState(false);
   const [notification, setNotification] = useState("");
@@ -123,7 +123,7 @@ const NavBar = () => {
 
           <Offcanvas show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Welcome</Offcanvas.Title>
+              <Offcanvas.Title>Welcome {userName}</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body
               style={{ display: "flex", flexDirection: "column" }}

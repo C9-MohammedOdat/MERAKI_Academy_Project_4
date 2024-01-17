@@ -2,6 +2,7 @@ import React ,{useState,useContext}from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import GoogleMapReact from 'google-map-react';
 import axios from 'axios'
 import "./CreateOrder.css"
 import {LoginContext} from "../../../../App"
@@ -12,6 +13,29 @@ const CreateOrder = (props) => {
     const [client, setClient] = useState(userId)
     const [units, setUnits] = useState(0)
     const [notes, setNotes] = useState("")
+    const [lat, setLat] = useState(null)
+    const [lng, setLng] = useState(null)
+    const [status, setStatus] = useState(null)
+    const [other, setOther] = useState(false)
+    const getLocation=()=>{
+        if(!navigator.geolocation){
+            setStatus("Geolocation is not supported by your browser")
+        }else{
+          console.log("test");
+            setStatus("Locating...")
+            navigator.geolocation.getCurrentPosition(
+                (position)=>{
+                    setStatus("Location Add")
+                    setLat(position.coords.latitude)
+                    setLng(position.coords.longitude)
+                },
+                ()=>{
+                    setStatus("Unable to retrieve your location")
+
+                }
+            )
+        }
+    }
     const newOrder=()=>{
         axios.post("http://localhost:5000/orders",{provider:props.show,client,notes,units,state:"pending"},{headers:{authorization:`Bearer ${token}`,
       }}).then((result)=>{
@@ -39,8 +63,17 @@ const CreateOrder = (props) => {
         </Modal.Header>
         <Modal.Body>
             <h6>Please Set Your Location</h6>
-<iframe src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
-   style={{borderRadius:"7px" ,width:"100%"}} ></iframe>
+            <p>If you want to set Currunt Location Click On Currunt Location ,If you want to set Other Location Click On Other Location</p>
+            <div style={{display:"flex" ,justifyContent:"space-between"}}><Button onClick={getLocation}>Currunt Location</Button>
+            <Button onClick={()=>{
+              setOther(!other)
+            }} variant="warning">Other Location</Button></div>
+            {status&&<p>*{status}</p>}
+            {other&&<div>
+              
+              </div>}
+            
+
    <br/>
    <br/>
     <Form>
