@@ -16,6 +16,34 @@ const Login = () => {
         const user =decodeToken(response.credential)
         console.log(response);
         console.log(user);
+        axios
+        .post("http://localhost:5000/users/register", {
+          firstName:user.given_name
+          ,
+          lastName:user.family_name,
+          email:user.email,
+          password:user.sub,
+          image:user.picture,
+          role:"6597008dd807d0385a55bd73",
+        })
+        .then((result) => {
+          console.log(result);
+          axios.post("http://localhost:5000/users/login",{email:user.email,password:user.sub}).then((result)=>{
+            console.log(result);
+            setResFromBack(result.data)
+            setIsLoggedIn(true)
+            setToken(result.data.token)
+            localStorage.setItem("token",result.data.token)
+            localStorage.setItem("isLoggedIn",true)
+            navigate("/")
+        }).catch((err)=>{
+            console.log(err);
+            setResFromBack(err.response.data)
+        })
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     };
     const errorMessage = (error) => {
         console.log(error);
