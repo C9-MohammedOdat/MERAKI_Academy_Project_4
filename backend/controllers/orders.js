@@ -108,7 +108,7 @@ const updateOrderById = (req, res, next) => {
   const update = req.body;
   const id = req.params.id;
   orderModel
-    .findByIdAndUpdate(id, update)
+    .findByIdAndUpdate(id, update,{new:true})
     .then((result) => {
       if (!result) {
         return res.status(404).json({
@@ -116,14 +116,17 @@ const updateOrderById = (req, res, next) => {
           message: `Order With id ${id} Not Found`,
         });
       }
+
+      if (result.state === "completed") {
+       
+        next();
+      }
       res.status(200).json({
         success: true,
         message: "Order Updated",
         order: result,
       });
-      if (result.state === "completed") {
-        next();
-      }
+      
     })
     .catch((err) => {
       res.status(500).json({
@@ -137,6 +140,7 @@ const Notification = (req, res) => {
   const id = req.params.id;
   orderModel
     .find({ state: "pending", price: { $gt: 0 }, client: id })
+    .populate("provider", "firstName -_id")
     .then((result) => {
       if (result.length) {
         res.status(200).json({

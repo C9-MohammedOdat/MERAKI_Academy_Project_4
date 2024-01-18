@@ -78,7 +78,9 @@ const NavBar = () => {
         if (newNotification.length) {
           setNotification(newNotification);
         } else {
-          setEmpty("no noftication at this time ");
+         
+          setEmpty("No Notification");
+           
         }
       })
       .catch((err) => {
@@ -258,6 +260,7 @@ const NavBar = () => {
               {empty && <div>{empty}</div>}
               {notification &&
                 notification?.map((ele, i) => (
+                  
                   <div
                     style={{
                       border: "1px solid gray",
@@ -269,6 +272,7 @@ const NavBar = () => {
                     }}
                   >
                     <div>
+                      
                       <h6>{ele.provider.firstName}</h6>
                     </div>
                     {ele.units !== 0 && (

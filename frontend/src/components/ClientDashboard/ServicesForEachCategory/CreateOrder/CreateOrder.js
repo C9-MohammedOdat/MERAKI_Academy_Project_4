@@ -6,6 +6,7 @@ import GoogleMapReact from "google-map-react";
 import axios from "axios";
 import "./CreateOrder.css";
 import { LoginContext } from "../../../../App";
+import Location from "./Location/Location";
 const CreateOrder = (props) => {
   console.log(props);
   const { userId, token } = useContext(LoginContext);
@@ -66,13 +67,14 @@ const CreateOrder = (props) => {
         </Modal.Header>
         <Modal.Body>
           <h6>Please Set Your Location</h6>
-          <p>
+          <Location/>
+          {/* <p>
             If you want to set Currunt Location Click On Currunt Location ,If
             you want to set Other Location Click On Other Location
           </p>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Button onClick={getLocation}>Currunt Location</Button>
-          </div>
+          </div> */}
           {status && <p>*{status}</p>}
 
           <br />
