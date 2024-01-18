@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import {  useNavigate } from "react-router-dom";
 import "./Register.css";
 import axios from "axios";
@@ -16,7 +18,15 @@ const Register = () => {
   const [role, setRole] = useState("");
   const [serviceType, setServiceType] = useState
   ("Furniture delivery");
+  const [google, setGoogle] = useState(null)
   const navigate = useNavigate();
+  const responseMessage = (response) => {
+    console.log(response);
+    
+};
+const errorMessage = (error) => {
+    console.log(error);
+};
   const sendRegister = () => {
       axios
         .post("http://localhost:5000/users/register", {

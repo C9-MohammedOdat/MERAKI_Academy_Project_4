@@ -1,16 +1,25 @@
 import "./Login.css"
 import React ,{useState,useContext} from 'react'
-
+import { GoogleLogin } from '@react-oauth/google';
+import { decodeToken } from "react-jwt";
 import axios from 'axios'
 import { LoginContext } from "../../App"
 import { useNavigate } from "react-router-dom"
+import Button from "react-bootstrap/esm/Button"
 const Login = () => {
     const navigate=useNavigate()
     const{setIsLoggedIn,setToken,token,isLoggedIn}=useContext(LoginContext)
     const [resFromBack, setResFromBack] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    
+    const responseMessage = (response) => {
+        const user =decodeToken(response.credential)
+        console.log(response);
+        console.log(user);
+    };
+    const errorMessage = (error) => {
+        console.log(error);
+    };
     const sendLogin=()=>{
     axios.post("http://localhost:5000/users/login",{email,password}).then((result)=>{
         console.log(result);
@@ -44,6 +53,8 @@ const Login = () => {
         <div style={{color:"white"}}>Don't have an account?<span style={{color:"black", cursor:"pointer"}} onClick={()=>{
             navigate("/register")
         }}>Register</span></div>
+
+<GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
         </div>
   )
 }

@@ -44,6 +44,7 @@ const NavBar = () => {
       })
       .then((result) => {
         if (result.data.success) {
+          console.log(result.data.orders);
           setNotification(result.data.orders);
         } else {
           setEmpty("No Notification");
@@ -72,7 +73,14 @@ const NavBar = () => {
         const newNotification = notification.filter((ele, i) => {
           return ele._id != id;
         });
+        if(newNotification.length)
+        {
         setNotification(newNotification);
+        }
+        else
+        {
+          setEmpty("no noftication at this time ")
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -87,15 +95,17 @@ const NavBar = () => {
       )
       .then((result) => {
         console.log(result);
-        getNotification();
-        //      const newNotification=notification.map((ele,i)=>{
-        //  if (ele._id===id){
-        //   ele.state="processing"
-        //   return ele
-        //  }
-
-        // })
-        // setNotification(newNotification)
+        const newNotification = notification.filter((ele, i) => {
+          return ele._id != id;
+        });
+        if(newNotification.length)
+        {
+        setNotification(newNotification);
+        }
+        else
+        {
+          setEmpty("no noftication at this time ")
+        }
       })
       .catch((err) => {
         console.log(err);

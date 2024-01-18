@@ -112,6 +112,7 @@ const createNewOrder=(req,res)=>{
     const Notification=(req,res)=>{
         const id=req.params.id
         orderModel.find({state:"pending",price:{$gt:0},client:id}).then((result)=>{
+            
             if(result.length){
                 res.status(200).json({
                     success:true,

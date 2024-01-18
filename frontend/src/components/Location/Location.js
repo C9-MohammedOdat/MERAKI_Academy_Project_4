@@ -27,15 +27,15 @@ const Location = () => {
       };
       const defaultProps = {
         center: {
-          lat: 32.569926,
-          lng: 35.8633783
+          lat:lat,
+          lng: lng
         },
         zoom: 11
       };
   return (
     <div style={{height:"50vh"}}>
     <GoogleMapReact
-   bootstrapURLKeys={{ key: "AIzaSyBW1nDKAK6Pttb8-Hwxqi28KxCjGlIUxTc" }}
+   bootstrapURLKeys={{ key: "AIzaSyARN9-KSQ5QmbKrmzyT5NGwaolZkjcurRA" }}
    defaultCenter={defaultProps.center}
    defaultZoom={defaultProps.zoom}
    yesIWantToUseGoogleMapApiInternals={true}

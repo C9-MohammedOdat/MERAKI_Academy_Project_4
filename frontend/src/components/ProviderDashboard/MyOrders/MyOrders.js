@@ -15,7 +15,7 @@ function MyVerticallyCenteredModal(props) {
     axios
       .put(
         `http://localhost:5000/orders/${id}`,
-        { price: price,state:"Waiting" },
+        { price: price,state:"pending" },
         { headers: { authorization: `Bearer ${token}` } }
       )
       .then((result) => {
