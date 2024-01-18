@@ -1,9 +1,7 @@
 import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { GoogleLogin } from '@react-oauth/google';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import axios from "axios";
 import { LoginContext } from "../../App";
@@ -16,50 +14,57 @@ const Register = () => {
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [typeOfAccount, setTypeOfAccount] = useState("Client");
   const [role, setRole] = useState("");
-  const [serviceType, setServiceType] = useState
-  ("Furniture delivery");
-  const [google, setGoogle] = useState(null)
+  const [serviceType, setServiceType] = useState("Furniture delivery");
+  const [google, setGoogle] = useState(null);
   const navigate = useNavigate();
   const responseMessage = (response) => {
     console.log(response);
-    
-};
-const errorMessage = (error) => {
+  };
+  const errorMessage = (error) => {
     console.log(error);
-};
+  };
   const sendRegister = () => {
-      axios
-        .post("http://localhost:5000/users/register", {
-          firstName,
-          lastName,
-          email,
-          password,
-          phoneNumber,
-          serviceType,
-          role,
-        })
-        .then((result) => {
-          console.log(result);
-          setResFromBack(result.data);
-        })
-        .catch((err) => {
-          console.log(err);
-          setResFromBack(err.response.data);
-        });
+    axios
+      .post("http://localhost:5000/users/register", {
+        firstName,
+        lastName,
+        email,
+        password,
+        phoneNumber,
+        serviceType,
+        role,
+      })
+      .then((result) => {
+        console.log(result);
+        setResFromBack(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setResFromBack(err.response.data);
+      });
   };
   return (
     <div className="Register-page">
       <div>
         <h1>Register</h1>
-        <div className="Rigester-Logo"><svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" color="White" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
-</svg></div>
-      <div className="lets">Let's get you set up!</div>
-      <div className="its">It's free. No subscription required</div>
+        <div className="Rigester-Logo">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="75"
+            height="75"
+            color="White"
+            fill="currentColor"
+            class="bi bi-envelope"
+            viewBox="0 0 16 16"
+          >
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+          </svg>
+        </div>
+        <div className="lets">Let's get you set up!</div>
+        <div className="its">It's free. No subscription required</div>
       </div>
       <Form>
         <Form.Group className="inputs" controlId="exampleForm.ControlInput1">
-          {/* <Form.Label>First Name</Form.Label> */}
           <Form.Control
             type="text"
             placeholder="First Name"
@@ -67,7 +72,6 @@ const errorMessage = (error) => {
               setFirstName(e.target.value);
             }}
           />
-          {/* <Form.Label>Last Name</Form.Label> */}
           <Form.Control
             type="text"
             placeholder="Last Name"
@@ -75,7 +79,6 @@ const errorMessage = (error) => {
               setLastName(e.target.value);
             }}
           />
-          {/* <Form.Label>Email</Form.Label> */}
           <Form.Control
             type="email"
             placeholder="name@example.com"
@@ -83,7 +86,6 @@ const errorMessage = (error) => {
               setEmail(e.target.value);
             }}
           />
-          {/* <Form.Label>Password</Form.Label> */}
           <Form.Control
             type="password"
             placeholder="Password"
@@ -91,7 +93,6 @@ const errorMessage = (error) => {
               setPassword(e.target.value);
             }}
           />
-          {/* <Form.Label>Phone Number</Form.Label> */}
           <Form.Control
             type="text"
             placeholder="+962..."
@@ -99,35 +100,39 @@ const errorMessage = (error) => {
               setPhoneNumber(e.target.value);
             }}
           />
-          <Form.Group> <Form.Label>Type Of Account</Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-            onChange={(e) => {
-              setTypeOfAccount(e.target.value);
-              e.target.value === "Client"
-                ? setRole("6597008dd807d0385a55bd73")
-                : setRole("6599007dc383021281e8c377");
-            }}
-          >
-            <option value="Client">Client</option>
-            <option value="Provider">Provider</option>
-          </Form.Select></Form.Group>
-         
+          <Form.Group>
+            {" "}
+            <Form.Label>Type Of Account</Form.Label>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => {
+                setTypeOfAccount(e.target.value);
+                e.target.value === "Client"
+                  ? setRole("6597008dd807d0385a55bd73")
+                  : setRole("6599007dc383021281e8c377");
+              }}
+            >
+              <option value="Client">Client</option>
+              <option value="Provider">Provider</option>
+            </Form.Select>
+          </Form.Group>
 
           {typeOfAccount === "Provider" && (
             <Form.Group>
-                <Form.Label>Select Your Service</Form.Label>
-                 <Form.Select
-              aria-label="Default select example"
-              onChange={(e) => {
-                setServiceType(e.target.value);
-              }}
-            >
-              <option value="Furniture delivery">Furniture Delivery</option>
-              <option value="Car transporter">Car Transporter</option>
-              <option value="Gas Cylinders Delivery">Gas Cylinders Delivery</option>
-            </Form.Select></Form.Group>
-           
+              <Form.Label>Select Your Service</Form.Label>
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(e) => {
+                  setServiceType(e.target.value);
+                }}
+              >
+                <option value="Furniture delivery">Furniture Delivery</option>
+                <option value="Car transporter">Car Transporter</option>
+                <option value="Gas Cylinders Delivery">
+                  Gas Cylinders Delivery
+                </option>
+              </Form.Select>
+            </Form.Group>
           )}
           <Button variant="primary" size="lg" onClick={sendRegister}>
             Register
@@ -137,9 +142,17 @@ const errorMessage = (error) => {
               {resFromBack.message}
             </div>
           )}
-          <div>Already have an account?<span style={{color:"black", cursor:"pointer"}} onClick={()=>{
-            navigate("/login")
-          }}>Sign In</span></div>
+          <div>
+            Already have an account?
+            <span
+              style={{ color: "black", cursor: "pointer" }}
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Sign In
+            </span>
+          </div>
         </Form.Group>
       </Form>
     </div>

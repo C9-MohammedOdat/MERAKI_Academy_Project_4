@@ -1,30 +1,27 @@
-const sendEmail=(req,res)=>{
+const sendEmail = (req, res) => {
   const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'mohammed.a.odatt@gmail.com',
-    pass:"anvt elxu fkkr lkih"
-  }
-});
+    service: "gmail",
+    auth: {
+      user: "mohammed.a.odatt@gmail.com",
+      pass: "anvt elxu fkkr lkih",
+    },
+  });
 
-const mailOptions = {
-  from: 'mohammed.a.odatt@gmail.com',
-  to: 'mohammed.a.odatt@gmail.com',
-  subject: 'Hello',
-  text: 'test email'
+  const mailOptions = {
+    from: "mohammed.a.odatt@gmail.com",
+    to: "mohammed.a.odatt@gmail.com",
+    subject: "Hello",
+    text: "test email",
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
 };
-
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
- console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-    // do something useful
-  }
-});
-}
-module.exports={
-sendEmail
-}
-  
-
+module.exports = {
+  sendEmail,
+};

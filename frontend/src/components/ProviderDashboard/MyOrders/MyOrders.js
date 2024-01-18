@@ -15,11 +15,10 @@ function MyVerticallyCenteredModal(props) {
     axios
       .put(
         `http://localhost:5000/orders/${id}`,
-        { price: price,state:"pending" },
+        { price: price, state: "pending" },
         { headers: { authorization: `Bearer ${token}` } }
       )
       .then((result) => {
-  
         console.log(result);
         setResFromeBack({
           message: "Successfuly Sent (Waiting A Response)",
@@ -83,7 +82,6 @@ function MyVerticallyCenteredModal(props) {
           <Button
             onClick={() => {
               updatePrice(props.id);
-
             }}
           >
             Send
@@ -101,7 +99,7 @@ const MyOrders = ({ state }) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [units, setUnits] = useState(null);
   const [id, setId] = useState("");
-  const [id_1, setId_1] = useState("")
+  const [id_1, setId_1] = useState("");
   const [show, setShow] = useState(false);
   const getAllOrders = () => {
     setLoader(true);
@@ -113,9 +111,9 @@ const MyOrders = ({ state }) => {
       })
       .then((result) => {
         if (result.data.success) {
-          const filtred=result.data.services.filter((ele, i) => {
+          const filtred = result.data.services.filter((ele, i) => {
             return ele.state === state;
-          })
+          });
           setOrders(filtred);
           setLoader(false);
         } else {
@@ -138,15 +136,21 @@ const MyOrders = ({ state }) => {
     setOrders(newOrders);
     axios.delete(`http://localhost:5000/orders/${id}`);
   };
-  const updateOrder=(id)=>{
-    axios.put(`http://localhost:5000/orders/${id}`,{state:"completed"},{headers:{authorization:`Bearer ${token}`,
-  }}).then((result)=>{
-      console.log(result)
-      getAllOrders()
-    }).catch((err)=>{
-      console.log(err);
-    })
-  }
+  const updateOrder = (id) => {
+    axios
+      .put(
+        `http://localhost:5000/orders/${id}`,
+        { state: "completed" },
+        { headers: { authorization: `Bearer ${token}` } }
+      )
+      .then((result) => {
+        console.log(result);
+        getAllOrders();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="Orders-Page">
       {loader ? (
@@ -162,7 +166,7 @@ const MyOrders = ({ state }) => {
                 </div>
                 <div className="phone-res">
                   <div className="PhoneNumber">+{ele.client.phoneNumber}</div>
-                  {state === "pending"&& (
+                  {state === "pending" && (
                     <div>
                       <Button
                         onClick={() => {
@@ -204,7 +208,6 @@ const MyOrders = ({ state }) => {
                           border: "1px solid",
                           borderRadius: "7px",
                           padding: "5px",
-                          
                         }}
                       >
                         {ele.notes}
@@ -215,32 +218,32 @@ const MyOrders = ({ state }) => {
                 {state === "processing" && (
                   <div
                     style={
-                      (show&&id_1===ele._id)
+                      show && id_1 === ele._id
                         ? { display: "flex", justifyContent: "space-between" }
                         : { display: "flex", justifyContent: "flex-end" }
                     }
                   >
-                    {(show&&id_1===ele._id) && (
-                  
+                    {show && id_1 === ele._id && (
                       <div style={{ color: "red" }}>
                         <h4>Collect Cash : {ele.price} JD</h4>
                       </div>
                     )}
                     <Button
                       onClick={() => {
-                        (show&&id_1===ele._id)&&
-                          updateOrder(ele._id)
-                          setShow(!show)
-                          show||setId_1(ele._id) 
+                        show && id_1 === ele._id && updateOrder(ele._id);
+                        setShow(!show);
+                        show || setId_1(ele._id);
                         setShow(!show);
                       }}
-                      variant={(show&&id_1===ele._id) ? "success" : "primary"}
+                      variant={show && id_1 === ele._id ? "success" : "primary"}
                     >
-                      {(show&&id_1===ele._id) ? "Collect" : "Complete"}
+                      {show && id_1 === ele._id ? "Collect" : "Complete"}
                     </Button>
                   </div>
                 )}
-                {state==="completed"&&<div>Colected Cash : {ele.price} JD</div>}
+                {state === "completed" && (
+                  <div>Colected Cash : {ele.price} JD</div>
+                )}
               </div>
             ))
           ) : (

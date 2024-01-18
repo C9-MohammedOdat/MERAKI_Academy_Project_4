@@ -10,33 +10,35 @@ import "./NavBar.css";
 import { LoginContext } from "../../App";
 import axios from "axios";
 import logo from "../images/user1.jpg";
-import logo3 from "../images/logo3.png"
+import logo3 from "../images/logo3.png";
 const NavBar = () => {
-  const { isLoggedIn, role, token, userId, setIsLoggedIn ,userName} =
+  const { isLoggedIn, role, token, userId, setIsLoggedIn, userName } =
     useContext(LoginContext);
   const [show, setShow] = useState(false);
   const [notification, setNotification] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [user, setUser] = useState({})
-  const [url, setUrl] = useState("")
+  const [user, setUser] = useState({});
+  const [url, setUrl] = useState("");
   const [show1, setShow1] = useState(false);
   const handleClose1 = () => setShow1(false);
   const handleShow1 = () => setShow1(true);
   const [empty, setEmpty] = useState("");
   const navigate = useNavigate();
-  useEffect(()=>{
-    // setLoader(true)
-    axios.get(  `http://localhost:5000/users/user/${userId}`,{ headers: { authorization: `Bearer ${token}` } }).then((result)=>{
-        // setLoader(false)
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/users/user/${userId}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
         console.log(result);
-        setUser(result.data.user[0])
-        result.data.user[0].image&&setUrl(result.data.user[0].image)
-    }).catch((err)=>{
-        // setLoader(false)
+        setUser(result.data.user[0]);
+        result.data.user[0].image && setUrl(result.data.user[0].image);
+      })
+      .catch((err) => {
         console.log(err);
-    })
-},[])
+      });
+  }, []);
   const getNotification = () => {
     axios
       .get(`http://localhost:5000/orders/notification/${userId}`, {
@@ -73,13 +75,10 @@ const NavBar = () => {
         const newNotification = notification.filter((ele, i) => {
           return ele._id != id;
         });
-        if(newNotification.length)
-        {
-        setNotification(newNotification);
-        }
-        else
-        {
-          setEmpty("no noftication at this time ")
+        if (newNotification.length) {
+          setNotification(newNotification);
+        } else {
+          setEmpty("no noftication at this time ");
         }
       })
       .catch((err) => {
@@ -98,13 +97,10 @@ const NavBar = () => {
         const newNotification = notification.filter((ele, i) => {
           return ele._id != id;
         });
-        if(newNotification.length)
-        {
-        setNotification(newNotification);
-        }
-        else
-        {
-          setEmpty("no noftication at this time ")
+        if (newNotification.length) {
+          setNotification(newNotification);
+        } else {
+          setEmpty("no noftication at this time ");
         }
       })
       .catch((err) => {
@@ -141,7 +137,7 @@ const NavBar = () => {
             >
               <div style={{ width: "50%", height: "25%", alignSelf: "center" }}>
                 {" "}
-                <img src={url?url:logo} style={{ borderRadius: "50%" }} />
+                <img src={url ? url : logo} style={{ borderRadius: "50%" }} />
               </div>
               <div>
                 <div
@@ -157,10 +153,15 @@ const NavBar = () => {
                   >
                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
                   </svg>
-                  <p onClick={()=>{
-                    navigate("account")
-                    handleClose()
-                  }} style={{ cursor: "pointer" }}>My Account</p>
+                  <p
+                    onClick={() => {
+                      navigate("account");
+                      handleClose();
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    My Account
+                  </p>
                 </div>
                 <div style={{ display: "flex", gap: "1rem" }}>
                   <svg
@@ -173,10 +174,15 @@ const NavBar = () => {
                   >
                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
                   </svg>
-                  <p onClick={()=>{
-                    handleClose()
-                    handleShow1()
-                  }} style={{ cursor: "pointer" }}>Notifications</p>
+                  <p
+                    onClick={() => {
+                      handleClose();
+                      handleShow1();
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Notifications
+                  </p>
                 </div>
                 <div style={{ display: "flex", gap: "1rem" }}>
                   <svg
@@ -207,9 +213,15 @@ const NavBar = () => {
       )}
       {/**/}
       <Container>
-      <span style={{height:"60px", width:"60px" ,cursor:"pointer"}}> <img  onClick={()=>{
-        navigate("/")
-      }} src={logo3}/> </span>
+        <span style={{ height: "60px", width: "60px", cursor: "pointer" }}>
+          {" "}
+          <img
+            onClick={() => {
+              navigate("/");
+            }}
+            src={logo3}
+          />{" "}
+        </span>
         <Navbar.Brand href="/">TAWSELA</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
