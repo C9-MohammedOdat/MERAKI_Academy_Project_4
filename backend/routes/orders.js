@@ -1,4 +1,5 @@
 const express=require("express")
+const {sendEmail}=require("../controllers/nodemiler")
 const{createNewOrder,getAllClientsOrders,getAllProvidersOrders,deleteOrderById,updateOrderById,Notification}=require("../controllers/orders")
 const authentication=require("../middleware/authentication")
 const authorization=require("../middleware/authorization")
@@ -7,6 +8,6 @@ ordersRouter.post("/",authentication,authorization("CREATE_ORDERS"),createNewOrd
 ordersRouter.get("/client/:id",getAllClientsOrders)
 ordersRouter.get("/provider/:id",authentication,getAllProvidersOrders)
 ordersRouter.delete("/:id",deleteOrderById)
-ordersRouter.put("/:id",authentication,updateOrderById)
+ordersRouter.put("/:id",authentication,updateOrderById,sendEmail)
 ordersRouter.get("/notification/:id",authentication,Notification)
 module.exports=ordersRouter

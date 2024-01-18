@@ -1,4 +1,5 @@
 const orderModel=require("../models/orders")
+const nodemailer = require('nodemailer');
 const createNewOrder=(req,res)=>{
     const{provider,state,client,notes,units,location}=req.body
     const order =new orderModel({
@@ -86,7 +87,7 @@ const createNewOrder=(req,res)=>{
     })
 
     }
-    const updateOrderById=(req,res)=>{
+    const updateOrderById=(req,res,next)=>{
         const update =req.body;
         const id=req.params.id
         orderModel.findByIdAndUpdate(id,update).then((result)=>{
@@ -101,6 +102,9 @@ const createNewOrder=(req,res)=>{
                 message:"Order Updated",
                 order:result
             })
+            if(result.state==="completed"){
+                next()
+            }
         }).catch((err)=>{
             res.status(500).json({
                 success:false,
@@ -133,4 +137,6 @@ const createNewOrder=(req,res)=>{
                 })
             })
     }
+    
+   
     module.exports={createNewOrder,getAllClientsOrders,getAllProvidersOrders,deleteOrderById,updateOrderById,Notification}

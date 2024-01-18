@@ -76,13 +76,18 @@ const Login = () => {
             setPassword(e.target.value)
         }} type='password' placeholder='Password'/></div>
 
-        <div><button className="Login-btn" onClick={sendLogin}>Login</button></div>
+        <div><button className="Login-btn" onClick={sendLogin}>Login</button>
+        
+        </div>
+        <div style={{alignSelf:"center"}}>
+            <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+        </div>
         {resFromBack&&<div className={resFromBack.success?"succ":"err"}>{resFromBack.message}</div>}
         <div style={{color:"white"}}>Don't have an account?<span style={{color:"black", cursor:"pointer"}} onClick={()=>{
             navigate("/register")
         }}>Register</span></div>
 
-<GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+
         </div>
   )
 }
