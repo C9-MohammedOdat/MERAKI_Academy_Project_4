@@ -7,6 +7,7 @@ const {
   deleteOrderById,
   updateOrderById,
   Notification,
+  getOrderById
 } = require("../controllers/orders");
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
@@ -18,6 +19,7 @@ ordersRouter.post(
   createNewOrder
 );
 ordersRouter.get("/client/:id", getAllClientsOrders);
+ordersRouter.get("/:id", getOrderById);
 ordersRouter.get("/provider/:id", authentication, getAllProvidersOrders);
 ordersRouter.delete("/:id", deleteOrderById);
 ordersRouter.put("/:id", authentication, updateOrderById, sendEmail);

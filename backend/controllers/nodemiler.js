@@ -12,8 +12,8 @@ const sendEmail = (req, res) => {
   const mailOptions = {
     from: "mohammed.a.odatt@gmail.com",
     to: "mohammed.a.odatt@gmail.com",
-    subject: "Hello",
-    text: "test email",
+    subject: "Completed Order Message ",
+    text: "Thanks for using our Application",
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

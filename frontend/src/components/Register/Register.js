@@ -13,16 +13,9 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [typeOfAccount, setTypeOfAccount] = useState("Client");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("6597008dd807d0385a55bd73");
   const [serviceType, setServiceType] = useState("Furniture delivery");
-  const [google, setGoogle] = useState(null);
   const navigate = useNavigate();
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
   const sendRegister = () => {
     axios
       .post("http://localhost:5000/users/register", {
@@ -107,8 +100,10 @@ const Register = () => {
               aria-label="Default select example"
               onChange={(e) => {
                 setTypeOfAccount(e.target.value);
+                e.target.value==="Client"&&(setServiceType(null))
                 e.target.value === "Client"
-                  ? setRole("6597008dd807d0385a55bd73")
+                  ?setRole("6597008dd807d0385a55bd73")
+                 
                   : setRole("6599007dc383021281e8c377");
               }}
             >

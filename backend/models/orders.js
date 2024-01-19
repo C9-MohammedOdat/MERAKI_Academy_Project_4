@@ -4,7 +4,7 @@ const orderSchema = new mongoose.Schema({
   state: { type: String }, //pending ,processing,complited
   provider: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   notes: { type: String },
-  location: { type: String }, // [longitude, latitude]
+  location: [{ type: String }], // [longitude, latitude]
   price: { type: Number },
   units: { type: Number },
 });

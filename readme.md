@@ -1,15 +1,15 @@
 <p align="center">
 <a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
- <img width="400px" height="100px" src="https://www.meraki-academy.org/assets/img/logov02.svg" alt="Project logo">
+ <img width="400px" height="100px" src="./frontend/public/logo3.png">
  </a>
 </p>
 
-<h3 align="center">Project Title
+<h3 align="center">TAWSELA
 </h3>
 
 ---
 
-<p align="center"> An awesome Project to describe README 
+<p align="center"> An Delivery 
     <br> 
 <a href=''>Demo</a>
     <br> 

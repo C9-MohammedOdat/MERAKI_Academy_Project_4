@@ -163,6 +163,31 @@ const Notification = (req, res) => {
       });
     });
 };
+const getOrderById=(req,res)=>{
+  const id= req.params.id
+  orderModel.find({_id:id}) .then((result) => {
+    if (result.length) {
+      res.status(200).json({
+        success: true,
+        message: ` order `,
+        orders: result,
+      });
+    } else {
+      res.status(200).json({
+        success: false,
+        message: "No Orders",
+      });
+    }
+  })
+  .catch((err) => {
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: err,
+    });
+  });
+
+}
 
 module.exports = {
   createNewOrder,
@@ -171,4 +196,5 @@ module.exports = {
   deleteOrderById,
   updateOrderById,
   Notification,
+  getOrderById
 };

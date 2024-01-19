@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
+import ShowLocation from "./ShowLocation/ShowLocation";
 import "./MyOrders.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { LoginContext } from "../../../App";
-
 function MyVerticallyCenteredModal(props) {
   const { token } = useContext(LoginContext);
   const [delivery, setDelivery] = useState(null);
@@ -101,6 +101,9 @@ const MyOrders = ({ state }) => {
   const [id, setId] = useState("");
   const [id_1, setId_1] = useState("");
   const [show, setShow] = useState(false);
+  const [showLocation, setShowLocation] = useState(false);
+  const [orderId1, setOrderId1] = useState(null);
+
   const getAllOrders = () => {
     setLoader(true);
     axios
@@ -165,7 +168,7 @@ const MyOrders = ({ state }) => {
                   <p>{ele.state}</p>
                 </div>
                 <div className="phone-res">
-                  <div className="PhoneNumber">+{ele.client.phoneNumber}</div>
+                  <div className="PhoneNumber">{ele.client.phoneNumber}</div>
                   {state === "pending" && (
                     <div>
                       <Button
@@ -214,6 +217,19 @@ const MyOrders = ({ state }) => {
                       </p>
                     </div>
                   )}
+                  {showLocation && orderId1 === ele._id && (
+                    <ShowLocation orderId={ele._id} />
+                  )}
+                  <Button
+                    onClick={() => {
+                      setShowLocation(!showLocation);
+                      setOrderId1(ele._id);
+                    }}
+                  >
+                    {showLocation && orderId1 === ele._id ? "Hide" : "Show"}{" "}
+                    Client Location
+                  </Button>
+                  <br />
                 </div>
                 {state === "processing" && (
                   <div

@@ -1,92 +1,99 @@
-import React,{useContext, useState} from 'react'
-import GoogleMapReact from 'google-map-react';
-import Button from 'react-bootstrap/esm/Button';
-import axios from 'axios';
-import { LoginContext } from '../../../../../App';
-// import "./location.css"
-const Location = () => {
-  const {userId,token}=useContext(LoginContext)
-    const [lat, setLat] = useState(null)
-    const [lng, setLng] = useState(null)
-    const [status, setStatus] = useState(null)
-    const sendLocation=()=>{
-      axios.put(`http://localhost:5000/orders/${userId}`,{location:[lat,lng]},{ headers: { authorization: `Bearer ${token}` } }).then((result)=>{
-        console.log(result);
-      }).catch((err)=>{
-        console.log(err);
-      })
-    }
-    const getLocation=()=>{
-        if(!navigator.geolocation){
-            setStatus("Geolocation is not supported by your browser")
-        }else{
-            setStatus("Locating...")
-            navigator.geolocation.getCurrentPosition(
-                (position)=>{
-                    setStatus(null)
-                    console.log(typeof position.coords.latitude)
-                    setLat(position.coords.latitude)
-                    setLng(position.coords.longitude)
-                },
-                ()=>{
-                    setStatus("Unable to retrieve your location")
+import React, { useContext, useState } from "react";
+import GoogleMapReact from "google-map-react";
+import Button from "react-bootstrap/esm/Button";
+import axios from "axios";
+import { LoginContext } from "../../../../../App";
+import logo from "../../../../images/logo3.png";
+import "./location.css";
+const Location = (props) => {
+  const { userId, token } = useContext(LoginContext);
+  const [status, setStatus] = useState(null);
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      setStatus("Geolocation is not supported by your browser");
+    } else {
+      setStatus("Locating...");
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setStatus(null);
+          console.log(typeof position.coords.latitude);
 
-                }
-            )
-        }
-    }
-  // const AnyReactComponent = ()=>{
-  //   return (
-  //     <div>
-  //       <img className='pin' src='https://cdn-icons-png.flaticon.com/512/484/484167.png' style={{height:"15px",width:"15px"}}/>
-  //     </div>
-  //   )
-  // }
-    const handleApiLoaded = (map, maps) => {
-        // use map and maps objects
-        console.log(lat)
-      };
-      console.log(lat)
-      
-      const defaultProps = {
-        center: {
-          lat:lat,
-          lng: lng
+          props.setLat(position.coords.latitude);
+          props.setLng(position.coords.longitude);
         },
-        zoom: 16
-      };
-      
-  return (
-    <div style={{height:"50vh" ,}}>
-      
-   {lat&& <GoogleMapReact
-   bootstrapURLKeys={{ key: "AIzaSyAZTsJ09SYo2PKzsR8sjk9jDgWMN8ltAZs" ,language:"en"}}
-   defaultCenter={defaultProps.center}
-   defaultZoom={defaultProps.zoom}
-   yesIWantToUseGoogleMapApiInternals={true}
-   onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
- >
-    
-   
- </GoogleMapReact>}
-  <div className='Location'>
-        <Button onClick={()=>{
-          getLocation()
-          lat&&
-          console.log(lat);
-          sendLocation()
-        }}>Get Location</Button>
-        {/* <p>{status}</p>
-        {lat&&<p>latitude: {lat}</p>}
-        {lng&&<p>Longitude: {lng}</p>} */}
-    </div>
-    {/* <AnyReactComponent
-     lat={59.955413}
-     lng={30.337844}
-     text="My Marker"
-   /> */}
-</div>
-  )
-}
+        () => {
+          setStatus("Unable to retrieve your location");
+        }
+      );
+    }
+  };
 
-export default Location
+  const handleApiLoaded = (map, maps) => {
+    // use map and maps objects
+  };
+
+  const defaultProps = {
+    center: {
+      lat: props.lat,
+      lng: props.lng,
+    },
+    zoom: 16,
+  };
+
+  const AnyReactComponent = ({ zoom }) => {
+    const pinSize = zoom <= 13 ? "25px" : "35px";
+
+    return (
+      <div className="test">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/484/484167.png"
+          className="pin"
+          style={{
+            height: { pinSize },
+            width: { pinSize },
+          }}
+          alt="pin"
+        />
+      </div>
+    );
+  };
+
+  return (
+    <div style={props.lat && { height: "50vh" }}>
+      {props.lat && (
+        <GoogleMapReact
+          bootstrapURLKeys={{
+            key: "AIzaSyAZTsJ09SYo2PKzsR8sjk9jDgWMN8ltAZs",
+            language: "en",
+          }}
+          defaultCenter={defaultProps.center}
+          defaultZoom={defaultProps.zoom}
+          yesIWantToUseGoogleMapApiInternals={true}
+          onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+        >
+          <AnyReactComponent
+            lat={props.lat}
+            lng={props.lng}
+            zoom={defaultProps.zoom}
+          />
+        </GoogleMapReact>
+      )}
+
+      <div className="Location">
+        <Button
+          onClick={() => {
+            props.setLat(null);
+            props.setLng(null);
+            getLocation();
+            props.lat && console.log(props.lat);
+          }}
+        >
+          Get your Location
+        </Button>
+        <p>{status}</p>
+      </div>
+    </div>
+  );
+};
+
+export default Location;

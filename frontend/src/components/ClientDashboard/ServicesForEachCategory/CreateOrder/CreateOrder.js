@@ -40,7 +40,14 @@ const CreateOrder = (props) => {
     axios
       .post(
         "http://localhost:5000/orders",
-        { provider: props.show, client, notes, units, state: "pending" },
+        {
+          provider: props.show,
+          client,
+          notes,
+          units,
+          location: [lat, lng],
+          state: "pending",
+        },
         { headers: { authorization: `Bearer ${token}` } }
       )
       .then((result) => {
@@ -67,14 +74,7 @@ const CreateOrder = (props) => {
         </Modal.Header>
         <Modal.Body>
           <h6>Please Set Your Location</h6>
-          <Location/>
-          {/* <p>
-            If you want to set Currunt Location Click On Currunt Location ,If
-            you want to set Other Location Click On Other Location
-          </p>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Button onClick={getLocation}>Currunt Location</Button>
-          </div> */}
+          <Location lat={lat} setLat={setLat} lng={lng} setLng={setLng} />
           {status && <p>*{status}</p>}
 
           <br />
