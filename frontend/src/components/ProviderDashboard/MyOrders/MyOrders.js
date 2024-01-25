@@ -19,7 +19,6 @@ function MyVerticallyCenteredModal(props) {
         { headers: { authorization: `Bearer ${token}` } }
       )
       .then((result) => {
-        console.log(result);
         setResFromeBack({
           message: "Successfuly Sent (Waiting A Response)",
           success: true,
@@ -147,7 +146,6 @@ const MyOrders = ({ state }) => {
         { headers: { authorization: `Bearer ${token}` } }
       )
       .then((result) => {
-        console.log(result);
         getAllOrders();
       })
       .catch((err) => {

@@ -16,8 +16,6 @@ const Location = (props) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setStatus(null);
-          console.log(typeof position.coords.latitude);
-
           props.setLat(position.coords.latitude);
           props.setLng(position.coords.longitude);
         },
@@ -85,7 +83,6 @@ const Location = (props) => {
             props.setLat(null);
             props.setLng(null);
             getLocation();
-            props.lat && console.log(props.lat);
           }}
         >
           Get your Location

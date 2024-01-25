@@ -19,7 +19,6 @@ const Home = () => {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((result) => {
-        console.log(result);
         setUserId(result.data.info.userId);
         setUserName(result.data.info.author);
         localStorage.setItem("userId", result.data.info.userId);

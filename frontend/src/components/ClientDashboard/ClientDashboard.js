@@ -19,7 +19,6 @@ const ClientDashboard = () => {
         .post(`http://localhost:5000/users/service`, { serviceType: service })
         .then((result) => {
           setusers(result.data.users);
-          console.log(result);
         })
         .catch((err) => {
           console.log(err);

@@ -14,7 +14,6 @@ app.use("/users", usersRouter);
 app.use("/roles", rolesrouter);
 app.use("/services", servicesRouter);
 app.use("/orders", ordersRouter);
-// Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);

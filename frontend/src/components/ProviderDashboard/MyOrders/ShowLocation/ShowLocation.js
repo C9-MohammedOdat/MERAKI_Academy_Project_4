@@ -8,7 +8,6 @@ const Location = (props) => {
     axios
       .get(`http://localhost:5000/orders/${props.orderId}`)
       .then((result) => {
-        console.log(result);
         setLat(result.data.orders[0].location[0]);
         setLng(result.data.orders[0].location[1]);
       })

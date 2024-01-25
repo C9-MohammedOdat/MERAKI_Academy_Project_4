@@ -31,7 +31,6 @@ const NavBar = () => {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((result) => {
-        console.log(result);
         setUser(result.data.user[0]);
         result.data.user[0].image && setUrl(result.data.user[0].image);
       })
@@ -46,12 +45,10 @@ const NavBar = () => {
       })
       .then((result) => {
         if (result.data.success) {
-          console.log(result.data.orders);
           setNotification(result.data.orders);
         } else {
           setEmpty("No Notification");
         }
-        console.log(result);
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +68,6 @@ const NavBar = () => {
     axios
       .delete(`http://localhost:5000/orders/${id}`)
       .then((result) => {
-        console.log(result);
         const newNotification = notification.filter((ele, i) => {
           return ele._id != id;
         });
@@ -95,7 +91,6 @@ const NavBar = () => {
         { headers: { authorization: `Bearer ${token}` } }
       )
       .then((result) => {
-        console.log(result);
         const newNotification = notification.filter((ele, i) => {
           return ele._id != id;
         });

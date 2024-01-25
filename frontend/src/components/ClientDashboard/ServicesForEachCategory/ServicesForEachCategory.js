@@ -9,7 +9,6 @@ const ServicesForEachCategory = () => {
   const [name, setName] = useState("");
   const [providerId, setProviderId] = useState("");
   const [modalShow, setModalShow] = React.useState(false);
-  console.log(users);
   return users.length
     ? users.map((ele, i) => (
         <div>
@@ -18,7 +17,7 @@ const ServicesForEachCategory = () => {
             style={{ width: "13rem", height: `19rem` }}
             className="text-center"
           >
-            <Card.Img variant="top" src={ele.image ? ele.image : logo} />
+            <div style={{height:"10rem"}}><Card.Img variant="top" src={ele.image ? ele.image : logo} /></div>
             <Card.Body>
               <Card.Title>{ele.firstName}</Card.Title>
               <Card.Text style={{ textAlign: "left" }}>

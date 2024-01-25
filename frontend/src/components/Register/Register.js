@@ -28,7 +28,6 @@ const Register = () => {
         role,
       })
       .then((result) => {
-        console.log(result);
         setResFromBack(result.data);
       })
       .catch((err) => {

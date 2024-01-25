@@ -22,7 +22,6 @@ const createNewService = (req, res) => {
     });
 };
 const getServiceByTilte = (req, res) => {
-  console.log(req.params.title);
   serviceModel
     .find({ title: req.params.title })
     .populate("provider", "firstName phoneNumber")

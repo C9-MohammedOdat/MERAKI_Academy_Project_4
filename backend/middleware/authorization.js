@@ -1,6 +1,5 @@
 const authorization = (string) => {
   return (req, res, next) => {
-    console.log(req.token.role);
     if (!req.token.role.permissions.includes(string)) {
       return res.status(403).json({
         success: false,

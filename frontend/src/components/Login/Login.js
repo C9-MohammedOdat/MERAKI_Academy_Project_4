@@ -15,8 +15,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const responseMessage = (response) => {
     const user = decodeToken(response.credential);
-    console.log(response);
-    console.log(user);
     axios
       .post("http://localhost:5000/users/register", {
         firstName: user.given_name,
@@ -27,15 +25,12 @@ const Login = () => {
         role: "6597008dd807d0385a55bd73",
       })
       .then((result) => {
-        console.log(result);
-
         axios
           .post("http://localhost:5000/users/login", {
             email: user.email,
             password: user.sub,
           })
           .then((result) => {
-            console.log(result);
             setResFromBack(result.data);
             setIsLoggedIn(true);
             setToken(result.data.token);
@@ -56,7 +51,6 @@ const Login = () => {
               password: user.sub,
             })
             .then((result) => {
-              console.log(result);
               setResFromBack(result.data);
               setIsLoggedIn(true);
               setToken(result.data.token);
@@ -79,7 +73,6 @@ const Login = () => {
     axios
       .post("http://localhost:5000/users/login", { email, password })
       .then((result) => {
-        console.log(result);
         setResFromBack(result.data);
         setIsLoggedIn(true);
         setToken(result.data.token);

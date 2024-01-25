@@ -8,7 +8,6 @@ import "./CreateOrder.css";
 import { LoginContext } from "../../../../App";
 import Location from "./Location/Location";
 const CreateOrder = (props) => {
-  console.log(props);
   const { userId, token } = useContext(LoginContext);
   const [resFromBack, setResFromBack] = useState("");
   const [client, setClient] = useState(userId);
@@ -22,7 +21,6 @@ const CreateOrder = (props) => {
     if (!navigator.geolocation) {
       setStatus("Geolocation is not supported by your browser");
     } else {
-      console.log("test");
       setStatus("Locating...");
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -51,11 +49,9 @@ const CreateOrder = (props) => {
         { headers: { authorization: `Bearer ${token}` } }
       )
       .then((result) => {
-        console.log(result);
         setResFromBack(result.data);
       })
       .catch((err) => {
-        console.log(err);
         setResFromBack(err.response.data);
       });
   };

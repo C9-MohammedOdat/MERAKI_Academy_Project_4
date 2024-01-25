@@ -9,7 +9,7 @@
 
 ---
 
-<p align="center"> An Delivery 
+<p align="center"> Delivery Application 
     <br> 
 <a href=''>Demo</a>
     <br> 
@@ -22,14 +22,11 @@
 - [Usage](#usage)
 - [Built Using](#built_using)
 - [User Story](#user_story)
-- [Data Flow](#data_flow)
 - [Guided By](#guided_by)
 
 ## 🧐 About <a name = "about"></a>
-
-Write about 1-2 paragraphs describing the purpose of your project.
-
-Ex. Are you looking for a quick and easy way to action, action, and action? The **(name of application)** is the greatest and most accurate application to do this for you. It helps you to **(list of activities)**. The **(name of application)** provides a simple design to ensure having the best user experience.
+ Are you looking for a quick and easy way to deliver heavy things? 
+ The **TAWSELA** is the greatest and most accurate application to do this for you. It helps you to **Deliver Furniture, Broken Car, and Gas Cylinders**. The **TAWSELA** provides a simple design to ensure having the best user experience.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -37,17 +34,17 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Visual Studio Code follow this <a href=''>link</a> to install.
-- Git Bash follow this <a href=''>link</a> to install.
-- MongoDB follow this <a href=''>link</a> to install.
-- Node.js follow this <a href=''>link</a> to install.
+- Visual Studio Code follow this <a href='https://code.visualstudio.com/'>link</a> to install.
+- Git Bash follow this <a href='https://git-scm.com/download/win'>link</a> to install.
+- MongoDB follow this <a href='https://www.mongodb.com/try/download/community'>link</a> to install.
+- Node.js follow this <a href='https://nodejs.org/en/download'>link</a> to install.
 
 ### Installing:
 
 1. Clone the repo to your local machine using git bash.
 
 ```
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/C9-MohammedOdat/MERAKI_Academy_Project_4
 ```
 
 2. Install packeges repeat this step in backend and frontend folder
@@ -78,7 +75,7 @@ Ex.
 
 - You don't have to register to navigate our web app
 - You can click on the **Home** tab provided in the navigation bar to view the home section
-- You can click on the **Add to cart** button to add this product to your cart but you have to be one of our users, so you should create an account
+- You can click on the **Book Now** button To request one of the service providers you need, but you have to be one of our users, so you should create an account
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
@@ -89,12 +86,10 @@ Ex.
 
 ## User Story <a name = "#user_story"></a>
 
-Your trello board link
-<a href=''>Trello</a>
+My trello board link
+<a href='https://trello.com/b/hVWaAyRm/project-4'>Trello</a>
 
-## Data Flow <a name = "#data_flow"></a>
 
-<img width=200px height=200px src="https://cacoo.com/assets/site/img/templates/screenshots/er-database-diagram.png" alt="Diagram"></a>
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 

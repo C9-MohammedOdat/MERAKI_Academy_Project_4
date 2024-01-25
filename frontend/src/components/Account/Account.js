@@ -20,21 +20,20 @@ const Account = () => {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((result) => {
-        console.log(result);
+        getinfo()
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  useEffect(() => {
-    setLoader(true);
+  const getinfo =()=>{
+     setLoader(true);
     axios
       .get(`http://localhost:5000/users/user/${userId}`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((result) => {
         setLoader(false);
-        console.log(result);
         setUser(result.data.user[0]);
         result.data.user[0].image && setUrl(result.data.user[0].image);
       })
@@ -42,6 +41,9 @@ const Account = () => {
         setLoader(false);
         console.log(err);
       });
+  }
+  useEffect(() => {
+   getinfo()
   }, []);
   const uploadImage = () => {
     const data = new FormData();
@@ -56,7 +58,6 @@ const Account = () => {
       .then((data) => {
         setUrl(data.url);
         update.image = data.url;
-        console.log(data.url);
         updateUser();
       })
       .catch((err) => console.log(err));
